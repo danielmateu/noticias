@@ -1,0 +1,28 @@
+FASTLIGHT - TODO LIST
+
+Autor: Robert Sallent
+Última revisión: 07/07/23
+
+-------------------------------------------------------------------------------------------------------------
+Para implementar en futuras versiones:
+-------------------------------------------------------------------------------------------------------------
+
+- CORE
+	- Vistas de error personalizadas.
+
+- LIBRARIES
+	- Añadir el código HTTP a las redirecciones y errores.
+	- Añadir el manyToMany a Model.
+	
+- API
+	- implementar mecanismo de API Keys	
+	
+-------------------------------------------------------------------------------------------------------------
+A evaluar... tal vez no se implemente por motivos docentes y se deja para los cursos de Laravel o Symfony
+-------------------------------------------------------------------------------------------------------------
+
+- Hacer uso de PSR4 (autoload con namespaces). 
+- Incoporar middleware
+- Incorporar un sistema de seeding para la base de datos.
+
+                
