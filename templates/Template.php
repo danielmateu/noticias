@@ -142,32 +142,32 @@ class Template implements TemplateInterface
     {
         $html = "<nav class='px-4 navbar navbar-expand navbar-light bg-light align-items-center justify-content-between'>";
 
-        $html .= "<a class='navbar-brand d-none d-md-block' href='/'>Biblioteca</a>";
+        $html .= "<a class='navbar-brand d-none d-md-block' href='/'>Noticias</a>";
 
         $html .= "<div class='collapse navbar-collapse' id='navbarSupportedContent'>";
 
         $html .= "<ul class='navbar-nav'>";
 
         // Añadimos la clase active a la página actual
-        $active = $_SERVER['REQUEST_URI'] == '/Libro' ? 'active fw-semibold' : '';
-        $html .= "<li class='nav-item '><a href='/Libro' class='nav-link $active'>Libros</a></li>";
+        $active = $_SERVER['REQUEST_URI'] == '/' ? 'active fw-semibold' : '';
+        $html .= "<li class='nav-item '><a href='/' class='nav-link $active'>Inicio</a></li>";
 
-        if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
-            $active = $_SERVER['REQUEST_URI'] == '/Socio' ? 'active fw-semibold' : '';
-            $html .= "<li class='nav-item '><a href='/Socio' class='nav-link $active'>Socios</a></li>";
-        }
+        // if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
+        //     $active = $_SERVER['REQUEST_URI'] == '/Socio' ? 'active fw-semibold' : '';
+        //     $html .= "<li class='nav-item '><a href='/Socio' class='nav-link $active'>Socios</a></li>";
+        // }
 
-        $active = $_SERVER['REQUEST_URI'] == '/Tema' ? 'active fw-semibold' : '';
-        $html .= "<li class='nav-item '><a href='/Tema' class='nav-link $active'>Temas</a></li>";
+        $active = $_SERVER['REQUEST_URI'] == '/noticia' ? 'active fw-semibold' : '';
+        $html .= "<li class='nav-item '><a href='/noticia' class='nav-link $active'>Noticias</a></li>";
 
-        $active = $_SERVER['REQUEST_URI'] == '/Contacto' ? 'active fw-semibold' : '';
-        $html .= "<li class='nav-item '><a href='/Contacto' class='nav-link $active'>Contacto</a></li>";
+        $active = $_SERVER['REQUEST_URI'] == '/contacto' ? 'active fw-semibold' : '';
+        $html .= "<li class='nav-item '><a href='/contacto' class='nav-link $active'>Contacto</a></li>";
 
         // Si estamos logueados y somos administradores mostramos el botón de administración
-        if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
-            $active = $_SERVER['REQUEST_URI'] == '/User' ? 'active fw-semibold' : '';
-            $html .= "<li class='nav-item'><a href='/User/list' class='nav-link $active'>Usuarios</a></li>";
-        }
+        // if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
+        //     $active = $_SERVER['REQUEST_URI'] == '/User' ? 'active fw-semibold' : '';
+        //     $html .= "<li class='nav-item'><a href='/User/list' class='nav-link $active'>Usuarios</a></li>";
+        // }
 
         $html .= "</ul>";
         $html .= "</div>";

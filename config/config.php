@@ -161,3 +161,8 @@ define('ALLOW_HEADERS', 'csrf_token');               // Encabezados permitidos.
 define('ALLOW_CREDENTIALS', 'true');                 // ¿Se permite el envío de credenciales?
 
 define('API_AUTHENTICATION', 'COOKIE'); // puede ser COOKIE (implementado) o KEY (no implementado aún)
+
+// Carpeta para las fotos de las imagenes de las noticias.
+define('NEWS_IMAGES_FOLDER', '/images/noticias');
+// Imagen por defecto para las noticias que no tienen imagen.
+define('DEFAULT_NEWS_IMAGE', '/default.png');
