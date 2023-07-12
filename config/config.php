@@ -8,7 +8,7 @@
  * @author Robert Sallent <robertsallent@gmail.com>
  * @since 0.1.0
  */
-   
+
 
 /* -------------------------------------------------------------
  * AUTOLOAD
@@ -24,47 +24,48 @@ define('AUTOLOAD_DIRECTORIES',  [
     '../templates',         // plantillas para las vistas
     '../app/exceptions'     // excepciones
 ]);
- 
-    
-    
+
+
+
 /* -------------------------------------------------------------
  * APLICACIÓN
  * -------------------------------------------------------------*/
-define('APP_NAME','FastLight Framework'); // Título de la aplicación.
+define('APP_NAME', 'Noticias CIFO'); // Título de la aplicación.
 define('APP_TYPE', 'WEB');                // Tipo de aplicación: WEB o API.
 
 // Controlador y método por defecto (solamente para APP_TYPE WEB).
+// TODO Cambiar el método por defecto a NoticiasController::index
 define('DEFAULT_CONTROLLER', 'WelcomeController');
 define('DEFAULT_METHOD', 'index');
-    
-   
-    
+
+
+
 /* -------------------------------------------------------------
  * VISTAS
  * -------------------------------------------------------------*/
-    
+
 define('VIEWS_FOLDER', '../mvc/views');     // Carpeta para las vistas.
- 
+
 // Clase para el template a usar en las vistas.
 // Las opciones disponibles por defecto son Template o RetroTemplate.
-define('TEMPLATE', 'Template'); 
+define('TEMPLATE', 'Template');
 
 
 
 /* -------------------------------------------------------------
  * TESTS
  * -------------------------------------------------------------*/
-    
+
 define('TEST_FOLDER', '../test');          // Carpeta para los test.
 define('BEAUTIFUL_TEST', true);             // ¿Usar template en los tests?
 define('TEST_TEMPLATE', 'TestTemplate');    // Ubicación del template para los tests.
 
-    
-    
+
+
 /* -------------------------------------------------------------
  * HERRAMIENTAS DE DEPURACIÓN (PARA APP_TYPE WEB)
  * -------------------------------------------------------------*/
-    
+
 define('DEBUG', true);    // Activa el modo debug.                     
 
 // Detalles que queremos mostrar en modo debug en la página de error
@@ -95,20 +96,20 @@ define('DB_LOGIN_ERRORS', false);                  // Guardar errores de login e
 /* -------------------------------------------------------------
  * BASE DE DATOS
  * -------------------------------------------------------------*/
-    
+
 // Parámetros de configuración de la base de datos:
-define('DB_HOST','localhost');  // Host.
-define('DB_USER','root');       // Usuario.
-define('DB_PASS','');           // Password.
-define('DB_NAME','fastlight');  // Nombre de la base de datos.
+define('DB_HOST', 'localhost');  // Host.
+define('DB_USER', 'root');       // Usuario.
+define('DB_PASS', '');           // Password.
+define('DB_NAME', 'noticias');  // Nombre de la base de datos.
 define('DB_PORT',  3306);       // Puerto.
-define('DB_CHARSET','utf8');    // Codificación de caracteres.
+define('DB_CHARSET', 'utf8');    // Codificación de caracteres.
 
 
-define('DB_CLASS','DB');        // Clase a usar, puede ser DB (mysqli) o DBPDO (PDO).
-define('SGDB','mysql');         // Driver que debe usar PDO (solamente para PDO).
+define('DB_CLASS', 'DB');        // Clase a usar, puede ser DB (mysqli) o DBPDO (PDO).
+define('SGDB', 'mysql');         // Driver que debe usar PDO (solamente para PDO).
 
-    
+
 /* -------------------------------------------------------------
  * USUARIOS Y ROLES
  * -------------------------------------------------------------*/
@@ -123,32 +124,32 @@ define('USER_PROVIDER', 'User');   // La única opción incluida es User.
 define('USER_ROLES', [
     'Usuario'       => 'ROLE_USER',
     'Administrador' => 'ROLE_ADMIN',
-    'Supervisor'    => 'ROLE_SUPERVISOR',
-    'Editor'        => 'ROLE_EDITOR',
-    'Test'          => 'ROLE_TEST',
-    'API'           => 'ROLE_API'
+    'Editor'    => 'ROLE_EDITOR',
+    'Lector'        => 'ROLE_LECTOR',
+
 ]);
 
 // Rol para el administrador (debe ser uno de los que están en la lista anterior).
 define('ADMIN_ROLE', 'ROLE_ADMIN');
 
-    
+
 
 /* -------------------------------------------------------------
  * REDIRECCIONES
  * -------------------------------------------------------------*/
-    
+
 define('REDIRECT_AFTER_LOGIN', '/'); // Redirección tras login.
-    
-    
+// TODO Redirigir al home de la aplicación
+
+
 /* -------------------------------------------------------------
  * PAGINADOR
  * -------------------------------------------------------------*/
-    
-define('RESULTS_PER_PAGE', 10);  // Número de resultados por página
-    
-    
-    
+
+define('RESULTS_PER_PAGE', 5);  // Número de resultados por página
+
+
+
 /* -------------------------------------------------------------
  * API
  * -------------------------------------------------------------*/
@@ -160,6 +161,3 @@ define('ALLOW_HEADERS', 'csrf_token');               // Encabezados permitidos.
 define('ALLOW_CREDENTIALS', 'true');                 // ¿Se permite el envío de credenciales?
 
 define('API_AUTHENTICATION', 'COOKIE'); // puede ser COOKIE (implementado) o KEY (no implementado aún)
-
-    
-    
