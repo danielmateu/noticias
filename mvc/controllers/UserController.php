@@ -101,7 +101,7 @@ class userController extends Controller
                     // Nombre aleatorio
                     true,
                     // Tamaño máximo (en bytes)
-                    124000,
+                    1240000000,
                     'image/*',
                     'user_'
                 );

@@ -4,20 +4,13 @@ class RegisterController extends Controller
     // Muestra el formulario de registro 
     public function index()
     {
-        // Auth::guest();
-        // Si es admin
-        if (Auth::admin()) {
-            // Cargamos la vista del formulario de registro
-            $this->loadView('/user/create');
-        } else {
-            // Si no, redirigimos a la página de inicio
-            $this->loadView('register');
-        }
+        Auth::guest();              // solo para usuarios no identificados
+        $this->loadView('register');   // carga la vista de login     
     }
 
     public function store()
     {
-        Auth::admin(); // solo para administradores
+        Auth::guest();              // solo para usuarios no identificados
 
         // Si no se recibe el formulari
         if (empty($_POST['register'])) {
@@ -35,7 +28,7 @@ class RegisterController extends Controller
         $user->displayname = $_POST['displayname'];
         $user->email = $_POST['email'];
         $user->phone = $_POST['phone'];
-        $user->addRole('ROLE_USER', $_POST['roles']);
+
 
         // Si los passwords no coinciden
         if ($user->password != $repeat) {
@@ -56,7 +49,7 @@ class RegisterController extends Controller
                     // Nombre aleatorio
                     true,
                     // Tamaño máximo (en bytes)
-                    124000,
+                    12400000000,
                     'image/*',
                     'user_'
                 );
@@ -65,7 +58,7 @@ class RegisterController extends Controller
             }
 
             Session::success("Usuario $user->displayname creado correctamente");
-            redirect('/user/list');
+            redirect('/');
         } catch (SQLException $ex) {
             //throw $th;
             Session::error('Error al crear el usuario');

@@ -67,6 +67,10 @@
 				<input type="file" name="portada" id="file-with-preview" class="form-control" placeholder="Elige la portada" accept="image/*">
 			</div>
 
+			<!-- Roles predefinido como USER Hidden -->
+			<!-- <input type="hidden" name="roles" value=""> -->
+
+
 
 			<input type="submit" value="Crear user" class="btn btn-outline-success" name="register">
 		</form>

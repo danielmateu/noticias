@@ -21,7 +21,7 @@
     <main class="d-md-flex justify-content-between align-items-center gap-4">
 
         <!-- Formulario para creación de user -->
-        <form class="form col-6" method="POST" name="user" action="/register/store" enctype="multipart/form-data">
+        <form class="form col-6" method="POST" name="user" action="/user/store" enctype="multipart/form-data">
             <!-- <h2>Creación de user</h2> -->
             <!-- Nombre user -->
             <div class="mb-3">
@@ -74,7 +74,7 @@
             </div>
 
 
-            <input type="submit" value="Crear user" class="button" name="register">
+            <input type="submit" value="Crear user" class="button" name="guardar">
         </form>
 
         <!-- Previsualización de la imagen -->

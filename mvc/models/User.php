@@ -84,4 +84,15 @@ class User extends Model implements Authenticable
 
         return $usuario;
     }
+
+    // Método que registra un usuario en la base de datos.
+    public function register(): bool
+    {
+        // preparación de la consulta
+        $consulta = "INSERT INTO users (displayname, email, phone, password, roles, picture)
+                     VALUES ('$this->displayname', '$this->email', '$this->phone', '$this->password', '$this->roles', '$this->picture')";
+
+        // ejecución de la consulta
+        return (DB_CLASS)::execute($consulta);
+    }
 }
