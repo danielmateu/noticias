@@ -168,6 +168,5 @@ define('DEFAULT_NEWS_IMAGE', 'default.png');
 
 // Carpeta para las fotos de los usuarios.
 define('USER_IMAGE_FOLDER', '/images/usuarios');
-
 // Imagen por defecto para los usuarios que no tienen imagen.
 define('DEFAULT_USER_IMAGE', 'default.png');

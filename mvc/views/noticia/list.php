@@ -67,7 +67,7 @@
                     <!-- <td class="d-none d-md-table-cell"><?= $noticia->iduser ?></td> -->
                     <td class="">
                         <!-- Si no está logueado o tiene role de lector -->
-                        <?php if (Login::guest() || Login::oneRole(['ROLE_READER'])) : ?>
+                        <?php if (Login::guest() || Login::oneRole(['ROLE_READER', 'ROLE_USER'])) : ?>
                             <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
                         <?php endif; ?>
 

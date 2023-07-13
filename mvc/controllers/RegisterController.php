@@ -4,19 +4,24 @@ class RegisterController extends Controller
     // Muestra el formulario de registro 
     public function index()
     {
-        Auth::guest();
-        $this->loadView('register');
+        // Auth::guest();
+        // Si es admin
+        if (Auth::admin()) {
+            // Cargamos la vista del formulario de registro
+            $this->loadView('/user/create');
+        } else {
+            // Si no, redirigimos a la página de inicio
+            $this->loadView('register');
+        }
     }
 
     public function store()
     {
-        // Auth::admin(); // solo para administradores
+        Auth::admin(); // solo para administradores
 
         // Si no se recibe el formulari
-        // comprobar que llegan los datos
-        if (!$this->request->has('register')) {
-            Session::error("No se recibió el formulario de Registro.");
-            redirect('/Register');
+        if (empty($_POST['register'])) {
+            throw new Exception('No se recibió el formulario');
         }
 
         // Creamos el nuevo usuario
@@ -30,7 +35,7 @@ class RegisterController extends Controller
         $user->displayname = $_POST['displayname'];
         $user->email = $_POST['email'];
         $user->phone = $_POST['phone'];
-        $user->addRole('ROLE_USER');
+        $user->addRole('ROLE_USER', $_POST['roles']);
 
         // Si los passwords no coinciden
         if ($user->password != $repeat) {
@@ -41,8 +46,26 @@ class RegisterController extends Controller
             //code...
             $user->save();
 
+            // Si llega el fichero con la imagen
+            if (Upload::arrive('portada')) {
+                // Guardamos la imagen
+                $user->picture = Upload::save(
+                    'portada',
+                    // Ruta donde se guardará la imagen
+                    '../public/' . USER_IMAGE_FOLDER,
+                    // Nombre aleatorio
+                    true,
+                    // Tamaño máximo (en bytes)
+                    124000,
+                    'image/*',
+                    'user_'
+                );
+
+                $user->update();
+            }
+
             Session::success("Usuario $user->displayname creado correctamente");
-            redirect('/');
+            redirect('/user/list');
         } catch (SQLException $ex) {
             //throw $th;
             Session::error('Error al crear el usuario');
@@ -55,6 +78,13 @@ class RegisterController extends Controller
                 // Redirigimos a la página anterior
                 redirect('/User/create');
             }
+        } catch (UploadException $ex) {
+            Session::error('Error al subir la imagen');
+
+            if (DEBUG) {
+                throw new Exception($ex->getMessage());
+            }
+            redirect('/User/create');
         }
     }
 }

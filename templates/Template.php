@@ -160,8 +160,8 @@ class Template implements TemplateInterface
         // $active = $_SERVER['REQUEST_URI'] == '/noticia' ? 'active fw-semibold' : '';
         // $html .= "<li class='nav-item '><a href='/noticia' class='nav-link $active'>Noticias</a></li>";
 
-        // $active = $_SERVER['REQUEST_URI'] == '/contacto' ? 'active fw-semibold' : '';
-        // $html .= "<li class='nav-item '><a href='/contacto' class='nav-link $active'>Contacto</a></li>";
+        $active = $_SERVER['REQUEST_URI'] == '/contacto' ? 'active fw-semibold' : '';
+        $html .= "<li class='nav-item '><a href='/contacto' class='nav-link $active'>Contacto</a></li>";
 
         // Si estamos logueados y somos administradores mostramos el botón de administración
         if (Login::oneRole(['ROLE_ADMIN'])) {

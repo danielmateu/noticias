@@ -53,6 +53,18 @@
                 <input type="password" name="repeat-password" id="repeat-password" class="form-control" placeholder="Repite la contraseña del user" required>
             </div>
 
+            <!-- Roles -->
+            <div class="mb-3">
+                <label for="roles" class="form-label">Roles</label>
+                <select name="roles" id="roles" class="form-select" required>
+                    <!-- <option value="ROLE_USER">Usuario</option>
+                    <option value="ROLE_ADMIN">Administrador</option> -->
+                    <?php foreach (USER_ROLES as $roleName => $roleValue) : ?>
+                        <option value="<?= $roleValue ?>"><?= $roleName ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
 
 
             <!-- Imagen -->
@@ -62,7 +74,7 @@
             </div>
 
 
-            <input type="submit" value="Crear user" class="button" name="guardar">
+            <input type="submit" value="Crear user" class="button" name="register">
         </form>
 
         <!-- Previsualización de la imagen -->

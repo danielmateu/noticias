@@ -19,11 +19,12 @@ Las noticias tendrán un título, un texto y una imagen. También tendrán la fe
 
 - Existirá un perfil de administrador. El usuario administrador podrá añadir nuevos usuarios.
 
-Un lector podrá darse de alta en el sistema mediante la operación de registro. Un lector será también un usuario,con el rol de lector y no podrá modificar ni crear noticias, pero sí comentarlas.
+- Un lector podrá darse de alta en el sistema mediante la operación de registro. Un lector será también un usuario,con el rol de lector y no podrá modificar ni crear noticias,
+pero sí comentarlas.
 
 - Los usuarios invitados (no identificados) podrán leer las noticias y nada más.
 
-Existirá una home de usuario (página personal) y una operación de contacto.
+- Existirá una home de usuario (página personal) y una operación de contacto.
 
 OPCIONAL: búsqueda de noticias.
 OPCIONAL: el usuario moderador puede eliminar comentarios.
@@ -103,7 +104,6 @@ $noticia→save();
 CONSIDERACION 3 (autor de la noticia o del comentario):
 
 - Al mostrar las noticias, estaría bien mostrar la fecha y quién ha escrito esa noticia. Por ejemplo, en el método show() de NoticiaController podríamos hacer:
-
 
 // cargar la vista…
 

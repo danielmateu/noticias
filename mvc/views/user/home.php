@@ -24,10 +24,30 @@
     <?= (TEMPLATE)::getHeaderAlt('Portada') ?>
     <?= (TEMPLATE)::getFlashes() ?>
 
-    <main>
-        <h1><?= APP_NAME ?></h1>
+    <main class="d-flex flex-column align-items-start align-items-md-center gap-2">
+        <h2><?= "Hello $user->displayname! Welcome to your Dashboard" ?></h2>
 
-        <h2>Home user</h2>
+        <!-- Mostramos foto del usuario -->
+
+        <div class="card col-sm-6">
+            <!-- No se encuentra la imagen... -->
+            <img src="<?= USER_IMAGE_FOLDER . '/' . ($user->picture ?? DEFAULT_USER_IMAGE) ?> " alt="Foto del usuario" class="card-img-top" width="100px">
+            <!-- No se encuentra la imagen... -->
+            <div class="card-body">
+                <!-- MOstramos la info del User -->
+                <p class="card-text"><strong>Nombre:</strong> <?= " $user->displayname" ?> </p>
+                <p class="card-text"><strong>Email:</strong> <?= " $user->email" ?> </p>
+                <p class="card-text"><strong>Teléfono:</strong> <?= " $user->phone" ?> </p>
+                <!-- Rol -->
+
+                <!-- Si es admin, mostrar el link a la gestión de usuarios -->
+                <?php if (Login::oneRole(['ROLE_ADMIN'])) : ?>
+                    <a class="btn btn-secondary" href="/User/list/">Ver usuarios</a>
+                <?php endif; ?>
+
+            </div>
+        </div>
+
 
     </main>
     <?= (TEMPLATE)::getAltFooter() ?>

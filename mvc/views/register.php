@@ -62,20 +62,20 @@
 			</div>
 
 			<!-- Imagen -->
-			<!-- <div class="mb-3">
+			<div class="mb-3">
 				<label for="portada" class="form-label">Imagen user</label>
 				<input type="file" name="portada" id="file-with-preview" class="form-control" placeholder="Elige la portada" accept="image/*">
 			</div>
-			-->
+
 
 			<input type="submit" value="Crear user" class="btn btn-outline-success" name="register">
 		</form>
 
 		<!-- Previsualización de la imagen -->
-		<!-- <div class="card p-4">
+		<div class="card p-4">
 			<h4>Imagen de previsualización</h4>
 			<img id="preview-image" src="<?= USER_IMAGE_FOLDER . '/' . DEFAULT_USER_IMAGE ?>" alt="Imagen de previsualización" class="card-img-top img-fluid">
-		</div> -->
+		</div>
 
 
 	</main>

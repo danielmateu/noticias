@@ -23,29 +23,40 @@
         <h2><?= $noticia->titulo ?></h2>
 
         <!-- Mostramos los la noticia -->
-        <section class="d-flex justify-content-between gap-4 align-items-start">
-            <div class="col-6 d-flex flex-column p-3 bg-light shadow rounded">
-                <p><?= $noticia->texto ?></p>
-                <div class="bg-secondary rounded p-2 text-white d-flex flex-column  ">
-                    <p class="m-0">Noticia creada por: <?= $autor->displayname ?></p>
-                    <p class="m-0">Fecha de publicación: <?= $noticia->created_at ?></p>
+        <section>
+            <div class="d-flex justify-content-between gap-4 align-items-start">
+                <div class="col-6 d-flex flex-column p-3 bg-light shadow rounded">
+                    <p><?= $noticia->texto ?></p>
+                    <div class="bg-secondary rounded p-2 text-white d-flex flex-column  ">
+                        <p class="m-0">Noticia creada por: <?= $autor->displayname ?></p>
+                        <p class="m-0">Fecha de publicación: <?= $noticia->created_at ?></p>
+                    </div>
+
+                </div>
+
+                <div class="card shadow">
+
+                    <img src="<?= NEWS_IMAGES_FOLDER . '/' . ($noticia->imagen ?? DEFAULT_NEWS_IMAGE) ?> " alt="Portada del libro" class="card-img-top" width="100px">
+
+                    <div class="card-body">
+                        <p class="card-text">Imagen de <?= "$noticia->titulo" ?> </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card shadow">
+            <div>
+                <h4>Comentarios de usuarios</h4>
 
-                <img src="<?= NEWS_IMAGES_FOLDER . '/' . ($noticia->imagen ?? DEFAULT_NEWS_IMAGE) ?> " alt="Portada del libro" class="card-img-top" width="100px">
+                <!-- Si estamos registrados mostraremos un input para escribir un comentario nuevo -->
 
-                <div class="card-body">
-                    <p class="card-text">Imagen de <?= "$noticia->titulo" ?> </p>
-                </div>
+
             </div>
         </section>
 
         <!-- Mostrar Comentarios -->
 
         <section>
-            <h2>Comentarios de usuarios</h2>
+
         </section>
 
 
