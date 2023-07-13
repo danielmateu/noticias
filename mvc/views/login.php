@@ -25,21 +25,36 @@
 	<!-- <?= (TEMPLATE)::getBreadCrumbs(["LogIn" => "/Login"]) ?> -->
 	<?= (TEMPLATE)::getFlashes() ?>
 
-	<main>
-		<section class="flex-container">
-			<div class="flex1"> </div>
-			<form class="flex2" method="POST" autocomplete="off" id="loginForm" action="/Login/enter">
-
+	<main class="shadow">
+		<section class="">
+			<form class="col-6 ">
 				<h2>Acceso a la aplicación</h2>
 				<p>Introduce tus datos en el formulario para identificarte.</p>
+				<!-- Email -->
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label>
+					<input required type="email" class="form-control" name="user" id="email" placeholder="Introduce tu @mail" aria-describedby="emailHelp" value="<?= old('user') ?>" required>
 
-				<div style="margin: 10px;">
-					<label for="email">email:</label>
-					<input type="email" name="user" id="email" value="<?= old('user') ?>" required>
-					<br>
-					<label for="password">Password:</label>
-					<input type="password" name="password" id="password" required>
 				</div>
+				<!-- Password -->
+				<div class="mb-3">
+					<label for="" class="form-label">Password</label>
+					<input type="password" name="password" id="password" required class="form-control" placeholder="Introduce la contraseña">
+				</div>
+
+				<div class="d-flex justify-content-between">
+					<input type="submit" name="login" class="btn btn-outline-primary" value="LogIn">
+				</div>
+				<div class="d-flex flex-column align-items-end">
+					<a href="/Register">No estás registrado?</a>
+					<a href="/ForgotPassword">Has olvidado la contraseña?</a>
+				</div>
+
+			</form>
+			<!-- <div class="flex1"> </div>
+			<form class="flex2" method="POST" autocomplete="off" id="loginForm" action="/Login/enter">
+
+				
 
 				<div class="centrado">
 					<input type="submit" class="button" name="login" value="LogIn">
@@ -49,7 +64,7 @@
 				</div>
 
 			</form>
-			<div class="flex1"> </div>
+			<div class="flex1"> </div> -->
 		</section>
 
 	</main>

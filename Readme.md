@@ -18,11 +18,11 @@ Las noticias tendrán un título, un texto y una imagen. También tendrán la fe
 
 - Los editores podrán editar o borrar cualquier noticia pero no podrán crear noticias nuevas.
 
-Existirá un perfil de administrador. El usuario administrador podrá añadir nuevos usuarios.
+- Existirá un perfil de administrador. El usuario administrador podrá añadir nuevos usuarios.
 
 Un lector podrá darse de alta en el sistema mediante la operación de registro. Un lector será también un usuario,con el rol de lector y no podrá modificar ni crear noticias, pero sí comentarlas.
 
-Los usuarios invitados (no identificados) podrán leer las noticias y nada más.
+- Los usuarios invitados (no identificados) podrán leer las noticias y nada más.
 
 Existirá una home de usuario (página personal) y una operación de contacto.
 

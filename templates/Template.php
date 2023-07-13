@@ -184,8 +184,13 @@ class Template implements TemplateInterface
             $html .= "</ul>";
             $html .= "</div>";
         } else {
+            $html .= "<div class='d-flex justify-content-between gap-2 flex-wrap'>";
             $active = $_SERVER['REQUEST_URI'] == '/Login' ? 'active fw-semibold' : '';
             $html .= "<div class='nav-item'><a href='/Login' class='nav-link $active'>Login</a></div>";
+            // Botón de registro
+            $active = $_SERVER['REQUEST_URI'] == '/Register' ? 'active fw-semibold' : '';
+            $html .= "<div class='nav-item'><a href='/Register' class='nav-link $active'>Registro</a></div>";
+            $html .= "</div>";
         }
 
         $html .= "</nav>";
