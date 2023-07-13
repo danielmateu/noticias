@@ -51,20 +51,6 @@
 				</div>
 
 			</form>
-			<!-- <div class="flex1"> </div>
-			<form class="flex2" method="POST" autocomplete="off" id="loginForm" action="/Login/enter">
-
-				
-
-				<div class="centrado">
-					<input type="submit" class="button" name="login" value="LogIn">
-				</div>
-				<div class="derecha">
-					<a href="/Forgotpassword">Olvidé mi clave</a>
-				</div>
-
-			</form>
-			<div class="flex1"> </div> -->
 		</section>
 
 	</main>
