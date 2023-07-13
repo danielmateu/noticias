@@ -31,14 +31,11 @@ class ComentarioController extends Controller
         $comentario->texto = $texto;
         $comentario->iduser = $iduser;
         $comentario->idnoticia = $idnoticia;
-
-
+        
         // Intentamos guardar la noticia en DB
         try {
             //code...
             $comentario->save();
-
-
 
             Session::set('success', 'Comentario creado correctamente');
             redirect("/noticia/show/$idnoticia");

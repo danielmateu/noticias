@@ -169,6 +169,12 @@ class userController extends Controller
         // Recuperamos el user de la BDD
         $user = User::find($_POST['id']);
 
+        // Eliminamos el role anterior
+        $rolesActuales = $user->getRoles();
+        foreach ($rolesActuales as $role) {
+            $user->removeRole($role);
+        }
+
         // Si no existe el user
         if (!$user) {
             throw new Exception("No se encontró el usuario $id");
@@ -178,6 +184,8 @@ class userController extends Controller
         $user->displayname = $_POST['displayname'];
         $user->email = $_POST['email'];
         $user->phone = $_POST['phone'];
+        $user->addRole($_POST['roles']);
+
 
         // Guardamos el user en la BDD
         try {

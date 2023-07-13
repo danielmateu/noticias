@@ -124,7 +124,7 @@ define('USER_PROVIDER', 'User');   // La única opción incluida es User.
 define('USER_ROLES', [
     'Usuario'       => 'ROLE_USER',
     'Administrador' => 'ROLE_ADMIN',
-    'Editor'    => 'ROLE_EDITOR',
+    'Editor'        => 'ROLE_EDITOR',
     'Lector'        => 'ROLE_LECTOR',
 
 ]);

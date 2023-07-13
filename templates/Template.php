@@ -318,7 +318,7 @@ EOT : '';
     				<label>Ascendente</label>
     				<input type='radio' name='sentidoOrden' value='DESC' checked>
     				<label>Descendente</label>
-    				<input class='button' type='submit' name='filtrar' value='Filtrar'>
+    				<input class='btn btn-outline-secondary' type='submit' name='filtrar' value='Filtrar'>
     			</form>";
     }
 

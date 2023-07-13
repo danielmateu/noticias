@@ -22,7 +22,7 @@
 
         <h2><?= $noticia->titulo ?></h2>
 
-        <!-- Mostramos los la noticia -->
+        <!-- Mostramos la noticia -->
         <section>
             <div class="d-flex justify-content-between gap-4 align-items-start">
                 <div class="col-6 d-flex flex-column p-3 bg-light shadow rounded">

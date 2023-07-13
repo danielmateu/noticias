@@ -27,23 +27,49 @@
     <main>
 
         <div class="d-flex align-items-center justify-content-between">
-            <!-- Filtro -->
 
-            <!-- Solamente podrán publicar noticias los redactores y también podrán modificar sus propias noticias. No las podrán eliminar.
-            -->
-            <?php if (Login::role('ROLE_WRITER')) : ?>
-                <a href="/noticia/create" class="btn btn-outline-primary mb-2">Crear Noticia</a>
-            <?php endif; ?>
+            <!-- Filtro y Buscador -->
+            <!-- Si hay un filtro aplicado -->
+            <?php if (!empty($filtro)) { ?>
 
-            <!-- Paginator -->
-            <div>
-                <?=
-                $paginator->stats()
-                ?>
-            </div>
+                <?= Template::removeFilterForm($filtro, '/noticia') ?>
+            <?php } else {    ?>
+
+
+                <?= Template::filterForm(
+                    '/noticia',
+                    [
+                        'Título' => 'titulo',
+                        'Texto' => 'texto',
+                    ],
+                    [
+                        'Título' => 'titulo',
+                        'Creación' => 'created_at',
+                    ],
+                    'ASC',
+                    'DESC'
+                ) ?>
+
+            <?php } ?>
+
+            <!-- FIN Filtro Buscador -->
+
 
             <!-- Mostraos las noticias -->
 
+        </div>
+
+        <!-- Solamente podrán publicar noticias los redactores y también podrán modificar sus propias noticias. No las podrán eliminar.
+            -->
+        <?php if (Login::role('ROLE_WRITER')) : ?>
+            <a href="/noticia/create" class="btn btn-outline-primary mb-2">Crear Noticia</a>
+        <?php endif; ?>
+
+        <!-- Paginator -->
+        <div>
+            <?=
+            $paginator->stats()
+            ?>
         </div>
 
         <table class="table table-dark table-striped table-hover rounded-3">
