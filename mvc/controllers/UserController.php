@@ -80,7 +80,7 @@ class userController extends Controller
         $user->displayname = $_POST['displayname'];
         $user->email = $_POST['email'];
         $user->phone = $_POST['phone'];
-        $user->addRole('ROLE_user', $_POST['roles']);
+        $user->addRole('ROLE_USER', $_POST['roles']);
 
         // Si los passwords no coinciden
         if ($user->password != $repeat) {

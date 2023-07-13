@@ -6,7 +6,6 @@
 
 - Reiniciamos apache!
 
-
 PLANTEAMIENTO DE LO QUE HAY QUE HACER
 
 Queremos una aplicación que permita publicar noticias, a modo de blog.
@@ -40,7 +39,7 @@ CU01 - Registro de usuario: en la parte superior derecha, el usuario hará clic 
 
 CU02 contacto - desde el menú principal, el usuario pulsará “contactar”. El sistema le mostrará un formulario de contacto que el usuario rellenará y enviará. Llegará un mail al administrador con la consulta y el sistema redirigirá al usuario a la portada junto con un mensaje de éxito.
 
-CU03 ver listado noticias: cuando el usuario acceda a la aplicación se le mostrará el listado de noticias en la portada.
+- CU03 ver listado noticias: cuando el usuario acceda a la aplicación se le mostrará el listado de noticias en la portada.
 
 CU04 ver noticia: el usuario pulsará el enlace “ver más” sobre una noticia. El sistema le mostrará la noticia completa junto con los comentarios que tenga.
 
@@ -48,15 +47,15 @@ CU05 comentar noticia: un lector correctamente identificado podrá pulsar el enl
 
 CU06 - OPCIONAL borrar comentario: desde los detalles de la noticia o desde la home, el usuario puede borrar sus comentarios (PRIORIDAD BAJA).
 
-CU07 escribir noticia: el redactor pulsará el enlace “escribir noticia” en el menú. Sistema muestra formulario, redactor escribe y envía, sistema guarda y redirige a detalles de la noticia.
+- CU07 escribir noticia: el redactor pulsará el enlace “escribir noticia” en el menú. Sistema muestra formulario, redactor escribe y envía, sistema guarda y redirige a detalles de la noticia.
 
-CU08 modificar noticia: el editor o el redactor, desde el listado de noticias o los detalles de la noticia podrá pulsar el botón “editar”. El sistema muestra formulario, usuario edita y envía, sistema guarda y mantiene en edición de la noticia. OJO: el redactor tan solo puede editar sus propias noticias.
+- CU08 modificar noticia: el editor o el redactor, desde el listado de noticias o los detalles de la noticia podrá pulsar el botón “editar”. El sistema muestra formulario, usuario edita y envía, sistema guarda y mantiene en edición de la noticia. OJO: el redactor tan solo puede editar sus propias noticias.
 
-CU09 borrar noticia: el editor, desde el listado de noticias o detalles de la noticia podrá borrar la noticia (con confirmación). El sistema te lleva a la lista de noticias.
+- CU09 borrar noticia: el editor, desde el listado de noticias o detalles de la noticia podrá borrar la noticia (con confirmación). El sistema te lleva a la lista de noticias.
 
-CU10 alta usuario: el administrador podrá crear un nuevo usuario desde el menú principal. El sistema le mostrará formulario, el admin rellenará los datos y elegirá el rol del nuevo usuario (lector, redator, editor, administrador). El sistema guarda y regresa a la portada.
+- CU10 alta usuario: el administrador podrá crear un nuevo usuario desde el menú principal. El sistema le mostrará formulario, el admin rellenará los datos y elegirá el rol del nuevo usuario (lector, redator, editor, administrador). El sistema guarda y regresa a la portada.
 
-CU11 identificarse: desde la parte superior derecha de la página, el usuario podrá pulsar el enlace a “login”. El sistema le mostrará el formulario de login que rellenará y enviará. El sistema dará acceso al usuario y lo redirigirá a su espacio personal (home).
+- CU11 identificarse: desde la parte superior derecha de la página, el usuario podrá pulsar el enlace a “login”. El sistema le mostrará el formulario de login que rellenará y enviará. El sistema dará acceso al usuario y lo redirigirá a su espacio personal (home).
 
 DIBUJAR INTERFICIES GRÁFICAS (páginas) → diseñadores
 
@@ -69,26 +68,6 @@ ESQUEMA RELACIONAL
 Una vez pasado a MariaDB/MySQL:
 
 PREPARAR EL PROYECTO
-
-Descargar el framework desde:
-https://github.com/robertsallent/fastlight/
-
-Descomprimir en:
-c:\xampp\htdocs\noticias
-
-También lo podríamos hacer con composer (para los que lo conozcan)
-composer create-project robertsallent/fastlight noticias
-
-CREAR VIRTUALHOST:
-editar el fichero c:\windows\system32\drivers\etc\hosts
-añadiendo la línea:
-127.0.0.1 noticias
-
-editar el fichero c:\xampp\apache\conf\extra\httpd-vhosts.conf
-copiar-pegar el vhost de la biblioteca cambiando biblioteca
-por noticias
-
-REINICIAR APACHE
 
 INSTRUCCIONES PARA EL PROYECTO
 
@@ -123,10 +102,8 @@ $noticia→save();
 
 CONSIDERACION 3 (autor de la noticia o del comentario):
 
-Al mostrar las noticias, estaría bien mostrar la fecha y quién ha escrito esa noticia. Por ejemplo, en el método show() de NoticiaController podríamos hacer:
+- Al mostrar las noticias, estaría bien mostrar la fecha y quién ha escrito esa noticia. Por ejemplo, en el método show() de NoticiaController podríamos hacer:
 
-$noticia = Noticia::find($id);
-$autor = $noticia->belongsTo(‘User’);
 
 // cargar la vista…
 
@@ -163,5 +140,3 @@ Para ocultar el botón de editar noticia a los usuarios que no tengan permiso pa
 if($noticia->iduser == Login::user()->id || Login::user()->role(‘ROLE_EDITOR’)){
 	echo “<a class=’button’ href=’/Noticia/edit/$noticia->id’ >Editar</a>”;
 }
-
-

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= APP_NAME ?> - Crear noticia</title>
+    <title><?= APP_NAME ?> - Crear Usuario</title>
     <link rel="stylesheet" href="/css/style.css">
     <?= (TEMPLATE)::getBootstrap() ?>
     <!-- Script para previsualización -->
@@ -21,7 +21,7 @@
     <main class="d-md-flex justify-content-between align-items-center gap-4">
 
         <!-- Formulario para creación de user -->
-        <form class="form col-6" method="POST" name="user" action="/user/store" enctype="multipart/form-data">
+        <form class="form col-6" method="POST" name="user" action="/register/store" enctype="multipart/form-data">
             <!-- <h2>Creación de user</h2> -->
             <!-- Nombre user -->
             <div class="mb-3">
@@ -53,17 +53,7 @@
                 <input type="password" name="repeat-password" id="repeat-password" class="form-control" placeholder="Repite la contraseña del user" required>
             </div>
 
-            <!-- Roles -->
-            <div class="mb-3">
-                <label for="roles" class="form-label">Roles</label>
-                <select name="roles" id="roles" class="form-select" required>
-                    <!-- <option value="ROLE_USER">user</option>
-                    <option value="ROLE_ADMIN">Administrador</option> -->
-                    <?php foreach (USER_ROLES as $roleName => $roleValue) : ?>
-                        <option value="<?= $roleValue ?>"><?= $roleName ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+
 
             <!-- Imagen -->
             <div class="mb-3">

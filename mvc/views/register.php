@@ -16,91 +16,79 @@
 	<!-- CSS -->
 	<?= (TEMPLATE)::getCss() ?>
 	<?= (TEMPLATE)::getBootstrap() ?>
+	<!-- <script src="/js/Preview.js"></script> -->
 </head>
 
 <body>
-	<?= (TEMPLATE)::getMenuBootstrap() ?>
-	<?= (TEMPLATE)::getHeaderAlt('Registros') ?>
 
-	<!-- <?= (TEMPLATE)::getBreadCrumbs(["LogIn" => "/Login"]) ?> -->
-	<?= (TEMPLATE)::getFlashes() ?>
+	<?= Template::getMenuBootstrap() ?>
+	<?= Template::getHeaderAlt("Crea un user") ?>
+	<?= Template::getSuccess() ?>
+	<?= Template::getError() ?>
 
-	<main class="shadow">
-		<section class="">
+	<main class="d-md-flex justify-content-between align-items-center gap-4">
 
-			<!-- Formulario de registro, pedimos nombre, email, password y password repetido -->
+		<!-- Formulario para creación de user -->
+		<form class="form col-6" method="POST" name="user" action="/register/store" enctype="multipart/form-data">
+			<!-- <h2>Creación de user</h2> -->
+			<!-- Nombre user -->
+			<div class="mb-3">
+				<label for="nombre" class="form-label">Nombre</label>
+				<input type="text" name="displayname" id="nombre" class="form-control" placeholder="Nombre del user" required>
+			</div>
 
-			<form class="col-6">
-				<!-- Nombre -->
-				<div class="mb-3">
-					<label for="" class="form-label">Nombre</label>
-					<input required type="text" class="form-control" id="" name="" placeholder="Introduce tu nombre">
-				</div>
-				<!-- Email -->
-				<div class="mb-3">
-					<label for="" class="form-label">Email</label>
-					<input required type="email" class="form-control" id="" name='' placeholder="Introduce tu @mail" aria-describedby="emailHelp">
-					<div id="emailHelp" class="form-text">Nunca compartiremos tus datos 😋</div>
-				</div>
-				<!-- Password -->
-				<div class="mb-3">
-					<label for="" class="form-label">Password</label>
-					<input required type="password" class="form-control" id="" name="" placeholder="Introduce la contraseña">
-				</div>
-				<!-- Password repetido -->
-				<div class="mb-3">
-					<label for="" class="form-label">Repite el Password</label>
-					<input required type="password" class="form-control" id="" name="" placeholder="Repite la contraseña">
-				</div>
-				<!-- <div class="mb-3 form-check">
-					<input type="checkbox" class="form-check-input" id="exampleCheck1">
-					<label class="form-check-label" for="exampleCheck1">Check me out</label>
-				</div> -->
-				<div class="d-flex justify-content-between">
-					<input type="submit" name="submit" class="btn btn-outline-primary" value="Registro">
+			<!-- Email -->
+			<div class="mb-3">
+				<label for="email" class="form-label">Email</label>
+				<input type="email" name="email" id="email" class="form-control" placeholder="Email del user" required>
+			</div>
 
-					<a href="/Login">Ya estás registrado?</a>
-				</div>
+			<!-- Phone -->
+			<div class="mb-3">
+				<label for="phone" class="form-label">Teléfono</label>
+				<input type="tel" name="phone" id="phone" class="form-control" placeholder="Teléfono del user" required>
+			</div>
 
-			</form>
+			<!-- Password -->
+			<div class="mb-3">
+				<label for="password" class="form-label">Contraseña</label>
+				<input type="password" name="password" id="password" class="form-control" placeholder="Contraseña del user" required>
+			</div>
 
+			<!-- Repeat Passsword -->
+			<div class="mb-3">
+				<label for="repeat-password" class="form-label">Repite la contraseña</label>
+				<input type="password" name="repeat-password" id="repeat-password" class="form-control" placeholder="Repite la contraseña del user" required>
+			</div>
 
-		</section>
+			<!-- Imagen -->
+			<!-- <div class="mb-3">
+				<label for="portada" class="form-label">Imagen user</label>
+				<input type="file" name="portada" id="file-with-preview" class="form-control" placeholder="Elige la portada" accept="image/*">
+			</div>
+			-->
+
+			<input type="submit" value="Crear user" class="btn btn-outline-success" name="register">
+		</form>
+
+		<!-- Previsualización de la imagen -->
+		<!-- <div class="card p-4">
+			<h4>Imagen de previsualización</h4>
+			<img id="preview-image" src="<?= USER_IMAGE_FOLDER . '/' . DEFAULT_USER_IMAGE ?>" alt="Imagen de previsualización" class="card-img-top img-fluid">
+		</div> -->
+
 
 	</main>
+	<div class="d-flex justify-content-center gap-2">
+		<!-- Botones para volver, editar y borrar -->
+		<a class="btn btn-primary" href="/">Volver</a>
 
-	<?= (TEMPLATE)::getAltFooter() ?>
+	</div>
+
+	<?= Template::getAltFooter() ?>
+
+
+
 </body>
 
 </html>
-<!-- <div class="flex1"> </div>
-<form class="flex2" method="POST" autocomplete="off" id="loginForm" action="/Login/enter">
-
-	<h2>Registro a la aplicación</h2>
-	<p>Introduce tus datos en el formulario para registrarte.</p>
-
-	<div class="mb-3">
-
-		<label for="name">Nombre:</label>
-		<input type="text" name="name" id="name" value="<?= old('name') ?>" required>
-
-		<label for="email">email:</label>
-		<input type="email" name="user" id="email" value="<?= old('user') ?>" required>
-		<br>
-		<label for="password">Password:</label>
-		<input type="password" name="password" id="password" required>
-
-
-		<label for="password">Repite Password:</label>
-		<input type="password" name="password" id="password2" required>
-	</div>
-
-	<div class="centrado">
-		<input type="submit" class="btn btn-outline-success" name="login" value="Registro">
-	</div>
-	<div class="derecha">
-		<a href="/login">Ya estoy registrado</a>
-	</div>
-
-</form>
-<div class="flex1"> </div> -->

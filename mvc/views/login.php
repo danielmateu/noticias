@@ -27,7 +27,7 @@
 
 	<main class="shadow">
 		<section class="">
-			<form class="col-6 ">
+			<form class="col-6" method="POST" autocomplete="" action="/Login/enter">
 				<h2>Acceso a la aplicación</h2>
 				<p>Introduce tus datos en el formulario para identificarte.</p>
 				<!-- Email -->

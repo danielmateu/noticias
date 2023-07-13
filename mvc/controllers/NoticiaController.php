@@ -118,6 +118,7 @@ class NoticiaController extends Controller
 
         // Buscamos la noticia en la DB
         $noticia = Noticia::find($id);
+        $autor = $noticia->belongsTo('User', 'iduser');
 
         // Comprobamos que la noticia existe
         if (!$noticia) {
@@ -127,7 +128,8 @@ class NoticiaController extends Controller
 
         // Mostramos la vista
         $this->loadView('noticia/show', [
-            'noticia' => $noticia
+            'noticia' => $noticia,
+            'autor' => $autor
         ]);
     }
 
