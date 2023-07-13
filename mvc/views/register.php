@@ -16,7 +16,7 @@
 	<!-- CSS -->
 	<?= (TEMPLATE)::getCss() ?>
 	<?= (TEMPLATE)::getBootstrap() ?>
-	<!-- <script src="/js/Preview.js"></script> -->
+	<script src="/js/Preview.js"></script>
 </head>
 
 <body>
@@ -68,7 +68,7 @@
 			</div>
 
 			<!-- Roles predefinido como USER Hidden -->
-			<!-- <input type="hidden" name="roles" value=""> -->
+			<!-- <input type="hidden" name="roles" value="ROLE_USER"> -->
 
 
 

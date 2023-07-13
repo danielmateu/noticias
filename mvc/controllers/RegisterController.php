@@ -28,7 +28,7 @@ class RegisterController extends Controller
         $user->displayname = $_POST['displayname'];
         $user->email = $_POST['email'];
         $user->phone = $_POST['phone'];
-
+        $user->roles = ['ROLE_USER'];
 
         // Si los passwords no coinciden
         if ($user->password != $repeat) {
