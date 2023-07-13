@@ -18,11 +18,10 @@
     <?= Template::getSuccess() ?>
     <?= Template::getError() ?>
 
-    <main class="d-flex justify-content-between align-items-center gap-4">
+    <main class="d-md-flex justify-content-between align-items-center gap-4">
 
         <!-- Formulario para creación de libro -->
         <form class="form col-6" method="POST" action="/noticia/store" enctype="multipart/form-data">
-
             <!-- Titulo -->
             <div class="mb-3">
                 <label for="titulo" class="form-label">Titulo</label>
@@ -31,13 +30,13 @@
             <!-- Texto -->
             <div class="mb-3">
                 <label for="texto" class="form-label">Texto</label>
-                <textarea class="form-control" id="texto" name="texto" rows="3" required></textarea>
+                <textarea class="form-control" id="texto" name="texto" rows="4" required></textarea>
             </div>
 
             <!-- Imagen -->
             <div class="mb-3">
                 <label for="portada" class="form-label">Portada</label>
-                <input type="file" name="portada" id="file-with-preview" class="form-control" placeholder="Elige la portada" accept="image/*">
+                <input type="file" name="portada" id="file-with-preview" class="form-control" placeholder="Elige la imagen" accept="image/*">
             </div>
 
             <input type="submit" value="Crear Noticia" class="btn btn-outline-secondary" name="Guardar">
@@ -54,7 +53,7 @@
     </main>
     <div class="d-flex justify-content-center gap-2">
         <!-- Botones para volver, editar y borrar -->
-        <a class="btn btn-primary" href="/libro">Volver</a>
+        <a class="btn btn-primary" href="/noticia">Volver</a>
         <!-- <a class="btn btn-secondary" href="/libro/edit/<?= $libro->id ?>">Editar</a>
         <a class="btn btn-danger" href="/libro/delete/<?= $libro->id ?>">Borrar</a> -->
     </div>

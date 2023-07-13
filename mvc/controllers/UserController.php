@@ -8,5 +8,6 @@ class UserController extends Controller
         $this->loadView('user/home', [
             'user' => Login::get()
         ]);
+
     }
 }

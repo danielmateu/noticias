@@ -141,16 +141,16 @@ class Template implements TemplateInterface
     public static function getMenuBootstrap()
     {
         $html = "<nav class='px-4 navbar navbar-expand navbar-light bg-light align-items-center justify-content-between'>";
-
-        $html .= "<a class='navbar-brand d-none d-md-block' href='/'>Noticias</a>";
+        $active = $_SERVER['REQUEST_URI'] == '/' ? 'active fw-semibold' : '';
+        $html .= "<a class='navbar-brand $active' href='/'>CIFO NEWS</a>";
 
         $html .= "<div class='collapse navbar-collapse' id='navbarSupportedContent'>";
 
         $html .= "<ul class='navbar-nav'>";
 
         // Añadimos la clase active a la página actual
-        $active = $_SERVER['REQUEST_URI'] == '/' ? 'active fw-semibold' : '';
-        $html .= "<li class='nav-item '><a href='/' class='nav-link $active'>Inicio</a></li>";
+        // $active = $_SERVER['REQUEST_URI'] == '/' ? 'active fw-semibold' : '';
+        // $html .= "<li class='nav-item '><a href='/' class='nav-link $active'>Inicio</a></li>";
 
         // if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
         //     $active = $_SERVER['REQUEST_URI'] == '/Socio' ? 'active fw-semibold' : '';
@@ -216,9 +216,6 @@ class Template implements TemplateInterface
         $html .= "</nav>";
         return $html;
     }
-
-
-
 
     /*****************************************************************************
      * MENSAJES FLASHEADOS DE ÉXITO Y ERROR
