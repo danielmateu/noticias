@@ -63,16 +63,16 @@
                     <td><img src="<?= NEWS_IMAGES_FOLDER . '/' . ($noticia->imagen ?? DEFAULT_NEWS_IMAGE) ?> " alt="Imagen de la noticia" width="100px" class="cover-mini">
                     </td>
                     <td><?= $noticia->titulo ?></td>
-                    <td class="d-none d-md-table-cell "><?= $noticia->texto ?></td>
+                    <td class="d-none d-md-table-cell "><?= acortarTexto($noticia->texto) ?></td>
                     <!-- <td class="d-none d-md-table-cell"><?= $noticia->iduser ?></td> -->
                     <td class="">
-                        <!-- Si no está logueado -->
-                        <?php if (Login::guest() || Login::role('ROLE_READER')) : ?>
+                        <!-- Si no está logueado o tiene role de lector -->
+                        <?php if (Login::guest() || Login::oneRole(['ROLE_READER'])) : ?>
                             <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
                         <?php endif; ?>
 
                         <!-- Si es escritor -->
-                        <?php if (Login::oneRole(['ROLE_USER', 'ROLE_WRITER'])) : ?>
+                        <?php if (Login::oneRole(['ROLE_WRITER'])) : ?>
                             <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
                             <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/edit/<?= $noticia->id ?>">✏️</a></button>
                         <?php endif; ?>

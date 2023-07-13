@@ -20,7 +20,7 @@
 
     <main class="d-md-flex justify-content-between align-items-center gap-4">
 
-        <!-- Formulario para creación de libro -->
+        <!-- Formulario para creación de noticia -->
         <form class="form col-6" method="POST" action="/noticia/store" enctype="multipart/form-data">
             <!-- Titulo -->
             <div class="mb-3">
@@ -54,8 +54,8 @@
     <div class="d-flex justify-content-center gap-2">
         <!-- Botones para volver, editar y borrar -->
         <a class="btn btn-primary" href="/noticia">Volver</a>
-        <!-- <a class="btn btn-secondary" href="/libro/edit/<?= $libro->id ?>">Editar</a>
-        <a class="btn btn-danger" href="/libro/delete/<?= $libro->id ?>">Borrar</a> -->
+        <!-- <a class="btn btn-secondary" href="/noticia/edit/<?= $noticia->id ?>">Editar</a>
+        <a class="btn btn-danger" href="/noticia/delete/<?= $noticia->id ?>">Borrar</a> -->
     </div>
 
     <?= Template::getAltFooter() ?>

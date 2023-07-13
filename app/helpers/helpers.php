@@ -23,12 +23,13 @@
  * 
  * @param mixed $thing variable a mostrar.
  */
-function dump(...$things){
+function dump(...$things)
+{
     echo "<pre>";
-    
-    foreach($things as $thing)
+
+    foreach ($things as $thing)
         var_dump($thing);
-    
+
     echo "</pre>";
 }
 
@@ -39,7 +40,8 @@ function dump(...$things){
  * @param mixed $thing variable a mostrar.
  * @param string $message mensaje a mostrar al finalizar la ejecución.
  */
-function dd($thing, string $message = 'Se detuvo la ejecución.'){
+function dd($thing, string $message = 'Se detuvo la ejecución.')
+{
     dump($thing);
     die($message);
 }
@@ -66,19 +68,19 @@ function arrayToString(
     array $lista,
     bool $brackets = true,
     bool $associative = true
-    
-):string{
+
+): string {
     $texto = '';
-    
-    foreach($lista as $clave => $valor){
-        
-        if(gettype($valor)=='array')
+
+    foreach ($lista as $clave => $valor) {
+
+        if (gettype($valor) == 'array')
             $valor = arrayToString($valor);
-        
+
         $texto .= $associative ? "$clave => $valor, " : "$valor, ";
     }
-    
-    return $brackets ? '[ '.rtrim($texto, ', ').' ]' : rtrim($texto, ', ');
+
+    return $brackets ? '[ ' . rtrim($texto, ', ') . ' ]' : rtrim($texto, ', ');
 }
 
 
@@ -99,10 +101,10 @@ function arrayToString(
  * @param bool $die finalizar la ejecución tras la redirección?
  */
 function redirect(
-    string $url = '/', 
+    string $url = '/',
     int $delay = 0,
     bool $die = true
-){
+) {
     URL::redirect($url, $delay, $die);
 }
 
@@ -124,25 +126,24 @@ function redirect(
 function view(
     string $name,           // nombre del fichero (sin extensión)
     array $parameters = []  // array asociativo de parámetros para la vista
-){
-    
+) {
+
     // crea las variables a partir de las claves del array en este ámbito
-    foreach($parameters as $variable => $valor)
+    foreach ($parameters as $variable => $valor)
         $$variable = $valor;
-        
+
     // carga la vista indicada desde el directorio de vistas
-    try{
-        require VIEWS_FOLDER."/$name.php";
-        
-    }catch(Throwable $e){
+    try {
+        require VIEWS_FOLDER . "/$name.php";
+    } catch (Throwable $e) {
         $message = DEBUG ?
-        "<p>ERROR en la vista <b>".VIEWS_FOLDER."/$name.php</b>.</p>
-         <p>INFORMACIÓN ADICIONAL: ".$e->getMessage()."</p>" :
-         "Error al cargar la página.";
-        
+            "<p>ERROR en la vista <b>" . VIEWS_FOLDER . "/$name.php</b>.</p>
+         <p>INFORMACIÓN ADICIONAL: " . $e->getMessage() . "</p>" :
+            "Error al cargar la página.";
+
         throw new ViewException($message);
     }
-}   
+}
 
 
 /*
@@ -160,7 +161,16 @@ function view(
  * 
  * @return string valor del input recuperado.
  */
-function old(string $inputName):string{
+function old(string $inputName): string
+{
     return Request::take()->previousInputs[$inputName] ?? '';
 }
 
+// Funcion que nos ayuda a acortar el texto que aparece en las tablas de las vistas
+function acortarTexto($texto, $longitud = 50)
+{
+    if (strlen($texto) > $longitud) {
+        $texto = substr($texto, 0, $longitud) . '...';
+    }
+    return $texto;
+}

@@ -27,7 +27,7 @@
     <main>
         <h1><?= APP_NAME ?></h1>
 
-        <h2>Home Usuario</h2>
+        <h2>Home user</h2>
 
     </main>
     <?= (TEMPLATE)::getAltFooter() ?>

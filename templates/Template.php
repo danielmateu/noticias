@@ -45,7 +45,7 @@ class Template implements TemplateInterface
     public static function getLogin()
     {
 
-        // si el usuario no está identificado, retorna el botón de LogIn
+        // si el user no está identificado, retorna el botón de LogIn
         if (Login::guest())
             return "
                <div class='derecha'>
@@ -53,9 +53,9 @@ class Template implements TemplateInterface
                </div>
         ";
 
-        $user = Login::user(); // recupera el usuario identificado
+        $user = Login::user(); // recupera el user identificado
 
-        // si el usuario es administrador...
+        // si el user es administrador...
         if (Login::isAdmin())
             return "
                  <div class='derecha'>
@@ -66,7 +66,7 @@ class Template implements TemplateInterface
                  </div>
             ";
 
-        // si el usuario no es administrador...
+        // si el user no es administrador...
         if (Login::check())
             return "
                  <div class='derecha'>
@@ -166,13 +166,13 @@ class Template implements TemplateInterface
         // Si estamos logueados y somos administradores mostramos el botón de administración
         if (Login::oneRole(['ROLE_ADMIN'])) {
             $active = $_SERVER['REQUEST_URI'] == '/user' ? 'active fw-semibold' : '';
-            $html .= "<li class='nav-item'><a href='/User/list' class='nav-link $active'>Usuarios</a></li>";
+            $html .= "<li class='nav-item'><a href='/user/list' class='nav-link $active'>Usuarios</a></li>";
         }
 
         $html .= "</ul>";
         $html .= "</div>";
 
-        // Si estamos logueados mostramos el nombre del usuario y el botón de logout
+        // Si estamos logueados mostramos el nombre del user y el botón de logout
         if (Login::check()) {
             $user = Login::user();
             $html .= "<div class='d-flex justify-content-between gap-2 flex-wrap'>";

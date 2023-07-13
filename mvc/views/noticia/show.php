@@ -23,14 +23,12 @@
         <h2><?= $noticia->titulo ?></h2>
 
         <!-- Mostramos los la noticia -->
-        <section class="d-flex justify-content-between">
+        <section class="d-flex justify-content-between gap-4">
+            <div class="col-6 d-flex flex-column justify-content-between p-4 bg-light shadow  rounded">
+                <p><?= $noticia->texto ?></p>
 
-            <p class="col-6">
-                <!-- <strong>Autor:</strong> -->
-                <?= $noticia->texto ?>
-                <br>
-
-            </p>
+                <p>Fecha de publicación: <?= $noticia->created_at ?></p>
+            </div>
 
             <div class="card ">
                 <!-- No se encuentra la imagen... -->
