@@ -35,7 +35,7 @@ define('APP_TYPE', 'WEB');                // Tipo de aplicación: WEB o API.
 
 // Controlador y método por defecto (solamente para APP_TYPE WEB).
 // TODO Cambiar el método por defecto a NoticiasController::index
-define('DEFAULT_CONTROLLER', 'WelcomeController');
+define('DEFAULT_CONTROLLER', 'NoticiaController');
 define('DEFAULT_METHOD', 'index');
 
 
@@ -133,7 +133,6 @@ define('USER_ROLES', [
 define('ADMIN_ROLE', 'ROLE_ADMIN');
 
 
-
 /* -------------------------------------------------------------
  * REDIRECCIONES
  * -------------------------------------------------------------*/
@@ -165,4 +164,4 @@ define('API_AUTHENTICATION', 'COOKIE'); // puede ser COOKIE (implementado) o KEY
 // Carpeta para las fotos de las imagenes de las noticias.
 define('NEWS_IMAGES_FOLDER', '/images/noticias');
 // Imagen por defecto para las noticias que no tienen imagen.
-define('DEFAULT_NEWS_IMAGE', '/default.png');
+define('DEFAULT_NEWS_IMAGE', 'default.png');

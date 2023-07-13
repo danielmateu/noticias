@@ -53,9 +53,9 @@
                     <div class="card mt-4">
 
                         <div class="card ">
-                            <!-- No se encuentra la imagen... -->
-                            <img src="<?= NEWS_IMAGES_FOLDER . '/' . ($noticia->picture ?? DEFAULT_NEWS_IMAGE) ?> " alt="Portada del noticia" class="card-img-top" width="100px" id="preview-image">
-                            <!-- No se encuentra la imagen... -->
+
+                            <img src="<?= NEWS_IMAGES_FOLDER . '/' . ($noticia->imagen ?? DEFAULT_NEWS_IMAGE) ?> " alt="Portada del noticia" class="card-img-top" width="100px" id="preview-image">
+
                             <div class="card-body">
                                 <p class="card-text">Imagen de la noticia <?= "$noticia->titulo" ?> </p>
                             </div>

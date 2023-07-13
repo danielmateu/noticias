@@ -6,6 +6,6 @@ class Noticia extends model
     public $id = 0;
     public $titulo = '';
     public $texto = '';
-    public $imagen = NULL;
+    public $imagen = '';
     public $iduser = 0;
 }

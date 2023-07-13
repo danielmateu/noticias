@@ -24,11 +24,24 @@
             <?= $noticia->titulo ?>
         </h2>
 
-
-
         <!-- Mostramos los la noticia -->
-        <section>
+        <section class="d-flex justify-content-between">
 
+            <p class="col-6">
+                <!-- <strong>Autor:</strong> -->
+                <?= $noticia->texto ?>
+                <br>
+
+            </p>
+
+            <div class="card ">
+                <!-- No se encuentra la imagen... -->
+                <img src="<?= NEWS_IMAGES_FOLDER . '/' . ($noticia->imagen ?? DEFAULT_NEWS_IMAGE) ?> " alt="Portada del libro" class="card-img-top" width="100px">
+                <!-- No se encuentra la imagen... -->
+                <div class="card-body">
+                    <p class="card-text">Imagen de <?= "$noticia->titulo" ?> </p>
+                </div>
+            </div>
         </section>
 
 
@@ -36,8 +49,7 @@
     <!-- Botones para volver, editar y borrar -->
     <div class="d-flex justify-content-center gap-2">
         <a class="btn btn-primary" href="/noticia">Volver</a>
-        <!-- <a class="btn btn-secondary" href="/noticia/edit/<?= $noticia->id ?>">Editar</a>
-        <a class="btn btn-danger" href="/noticia/delete/<?= $noticia->id ?>">Borrar</a> -->
+
     </div>
 
     <?= Template::getAltFooter() ?>

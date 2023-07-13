@@ -13,7 +13,7 @@ class NoticiaController extends Controller
         $filtro = Filter::apply('noticias');
         $limit = RESULTS_PER_PAGE;
         $total = $filtro ? Noticia::filteredResults($filtro) : Noticia::total();
-        $paginator = new Paginator('noticia/list', $page, $limit, $total);
+        $paginator = new Paginator('/noticia/list', $page, $limit, $total);
 
         $noticias = $filtro ?
             Noticia::filter($filtro, $limit, $paginator->getOffset()) : Noticia::orderBy('id', 'ASC', $limit, $paginator->getOffset());
@@ -62,23 +62,17 @@ class NoticiaController extends Controller
             //code...
             $noticia->save();
 
-            // Si no llega imagen, guardamos la que hay por defecto
-            if (empty($_POST['portada'])) {
-                $noticia->imagen = 'default.png';
-                $noticia->save();
-            }
-
             // Si llega imagen, la guardamos
             if (Upload::arrive('portada')) {
                 $noticia->imagen = Upload::save(
                     // Nombre del input
                     'portada',
                     // Ruta a la carpeta de destino
-                    '..public/' . NEWS_IMAGES_FOLDER,
+                    '../public/' . NEWS_IMAGES_FOLDER,
                     // Generar nombre aleatorio
                     true,
                     // Tamaño máximo
-                    124000,
+                    1240000,
                     // TIpo mime
                     'image/*',
                     // Prefijo del nombre
@@ -86,6 +80,13 @@ class NoticiaController extends Controller
                 );
                 $noticia->update();
             }
+
+            // Si no llega imagen, guardamos la que hay por defecto
+            // if (empty($_POST['portada'])) {
+            //     $noticia->imagen = 'default.png';
+            //     $noticia->save();
+            // }
+
             Session::flash('success', 'Noticia creada correctamente');
             redirect("/noticia/show/$noticia->id");
         } catch (SQLException $ex) {
@@ -163,5 +164,97 @@ class NoticiaController extends Controller
 
     public function update()
     {
+        // Si tenemos el role de escritor, podremos editar la noticia
+        if (!Login::oneRole(['ROLE_WRITER'])) {
+            Session::error("No tienes permisos para editar un libro");
+            redirect('/');
+        }
+
+        // Si no llega el formulario con los datos, lanzamos error
+        if (empty($_POST)) {
+            Session::error('No se han recibido datos');
+            // redirect('/noticia');
+        }
+
+        // Recuperadmos el id
+        $id = intval($_POST['id']);
+        // Recuperamos la noticia
+        $noticia = Noticia::find($_POST['id']);
+
+        // Comprobamos que la noticia existe
+        if (!$noticia) {
+            Session::error("No se ha encontrado la noticia con id $id");
+            redirect('/noticia');
+        }
+
+        // Recogemos los datos del formulario
+        $noticia->titulo = $_POST['titulo'];
+        $noticia->texto = $_POST['texto'];
+
+        // Intentamos guardar la noticia en DB  
+        try {
+            //code...
+            $noticia->update();
+
+            $secondUpdate = false;
+
+            $oldCover = $noticia->imagen;
+
+            // Si llega imagen, la guardamos
+            if (Upload::arrive('portada')) {
+                $noticia->imagen = Upload::save(
+                    // Nombre del input
+                    'portada',
+                    // Ruta a la carpeta de destino
+                    '../public/' . NEWS_IMAGES_FOLDER,
+                    // Generar nombre aleatorio
+                    true,
+                    // Tamaño máximo
+                    0,
+                    // TIpo mime
+                    'image/*',
+                    // Prefijo del nombre
+                    'new_image_'
+                );
+                $secondUpdate = true;
+            }
+
+            // Si hay que eliminar la imagen y no llega una nueva
+            // if (isset($_POST('eliminarportada')) && $oldCover && !Upload::arrive('portada')) {
+            //     $noticia->picture = null;
+            //     $secondUpdate = true;
+            // }
+
+            // Si hay que eliminar la imagen y llega una nueva
+            if ($secondUpdate) {
+                $noticia->update();
+                @unlink(NEWS_IMAGES_FOLDER . $oldCover);
+            }
+
+            Session::flash('success', 'Noticia actualizada correctamente');
+            redirect("/noticia/show/$noticia->id");
+        } catch (SQLException $ex) {
+            //throw $th;
+            Session::flash('error', 'Error al actualizar la noticia');
+
+            // Si estamos en modo debug
+            if (DEBUG) {
+                throw new Exception($ex->getMessage());
+            } else {
+                // Si no estamos en modo debug, redireccionamos al formulario de edición
+                redirect('/noticia/edit/' . $noticia->id);
+            }
+        } catch (UploadException $ex) {
+            //throw $th;
+            Session::flash('error', 'Error al subir la imagen');
+
+            // Si estamos en modo debug
+            if (DEBUG) {
+                throw new Exception($ex->getMessage());
+            } else {
+                // Si no estamos en modo debug, redireccionamos al formulario de edición
+                redirect('/noticia/edit/' . $noticia->id);
+            }
+        }
     }
 }
