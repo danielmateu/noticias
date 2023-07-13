@@ -16,7 +16,7 @@ class NoticiaController extends Controller
         $paginator = new Paginator('/noticia/list', $page, $limit, $total);
 
         $noticias = $filtro ?
-            Noticia::filter($filtro, $limit, $paginator->getOffset()) : Noticia::orderBy('id', 'ASC', $limit, $paginator->getOffset());
+            Noticia::filter($filtro, $limit, $paginator->getOffset()) : Noticia::orderBy('id', 'DESC', $limit, $paginator->getOffset());
 
 
         $this->loadView('noticia/list', [
@@ -135,7 +135,7 @@ class NoticiaController extends Controller
     public function edit(int $id = 0)
     {
         // Comprobamos que nos llega el id
-        if (!Login::role('ROLE_WRITER')) {
+        if (!Login::oneRole(['ROLE_WRITER', 'ROLE_EDITOR'])) {
             Session::error("No tienes permisos para editar un libro");
             redirect('/');
         }
@@ -165,7 +165,7 @@ class NoticiaController extends Controller
     public function update()
     {
         // Si tenemos el role de escritor, podremos editar la noticia
-        if (!Login::oneRole(['ROLE_WRITER'])) {
+        if (!Login::oneRole(['ROLE_WRITER', 'ROLE_EDITOR'])) {
             Session::error("No tienes permisos para editar un libro");
             redirect('/');
         }
@@ -257,4 +257,91 @@ class NoticiaController extends Controller
             }
         }
     }
+
+    // Método que nos ayudará a eliminar la noticia
+
+    public function delete(int $id = 0)
+    {
+        // Si tenemos role de editor, podremos eliminar la noticia
+        if (!Login::oneRole(['ROLE_EDITOR'])) {
+            Session::error("No tienes permisos para eliminar un libro");
+            redirect('/');
+        }
+
+        // Comprobamos que llega el id de la noticia a eliminar
+        if (!$id) {
+            Session::error('No se ha indicado la noticia a eliminar');
+            redirect('/noticia');
+        }
+
+        // Recuperamos la noticia
+        $noticia = Noticia::find($id);
+
+        // Comprobamos que la noticia existe
+        if (!$noticia) {
+            Session::error('No se ha encontrado la noticia');
+            redirect('/noticia');
+        }
+
+        // Cargamos la vista de confirmación
+        $this->loadView('noticia/delete', [
+            'noticia' => $noticia
+        ]);
+    }
+
+    // Método que nos ayudará a eliminar la noticia de la DB
+
+    public function destroy()
+    {
+
+        // Solo puede eliminar el editor
+        if (!Login::oneRole(['ROLE_EDITOR'])) {
+            Session::error("No tienes permisos para eliminar un libro");
+            redirect('/');
+        }
+
+        // Comprobamos que llegue el formulario de confirmación
+        if (empty($_POST)) {
+            Session::error('No se han recibido datos');
+            redirect('/');
+        }
+
+        // Recuperamos el id de la noticia a eliminar
+        $id = intval($_POST['id']);
+
+        // Recuperamos la noticia
+        $noticia = Noticia::find($id);
+
+        // Comprobamos que la noticia existe
+        if (!$noticia) {
+            Session::error('No se ha encontrado la noticia');
+            redirect('/noticia');
+        }
+
+        // Intentamos eliminar la noticia
+        try {
+            $noticia->deleteObject();
+
+            // Si la noticia tiene imagen, la eliminamos
+            if ($noticia->imagen) {
+                @unlink('../public/' . NEWS_IMAGES_FOLDER . '/' . $noticia->imagen);
+            }
+
+            Session::flash('success', 'Noticia eliminada correctamente');
+            redirect('/noticia');
+        } catch (SQLException $ex) {
+            //throw $th;
+            Session::flash('error', 'Error al eliminar la noticia');
+
+            // Si estamos en modo debug
+            if (DEBUG) {
+                throw new Exception($ex->getMessage());
+            } else {
+                // Si no estamos en modo debug, redireccionamos al formulario de edición
+                redirect('/noticia/delete/' . $noticia->id);
+            }
+        }
+    }
+
+    // Añadir comentario a una noticia
 }

@@ -164,10 +164,10 @@ class Template implements TemplateInterface
         // $html .= "<li class='nav-item '><a href='/contacto' class='nav-link $active'>Contacto</a></li>";
 
         // Si estamos logueados y somos administradores mostramos el botón de administración
-        // if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
-        //     $active = $_SERVER['REQUEST_URI'] == '/User' ? 'active fw-semibold' : '';
-        //     $html .= "<li class='nav-item'><a href='/User/list' class='nav-link $active'>Usuarios</a></li>";
-        // }
+        if (Login::oneRole(['ROLE_ADMIN'])) {
+            $active = $_SERVER['REQUEST_URI'] == '/user' ? 'active fw-semibold' : '';
+            $html .= "<li class='nav-item'><a href='/User/list' class='nav-link $active'>Usuarios</a></li>";
+        }
 
         $html .= "</ul>";
         $html .= "</div>";

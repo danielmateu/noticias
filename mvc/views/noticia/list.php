@@ -67,12 +67,7 @@
                     <!-- <td class="d-none d-md-table-cell"><?= $noticia->iduser ?></td> -->
                     <td class="">
                         <!-- Si no está logueado -->
-                        <?php if (Login::guest()) : ?>
-                            <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
-                        <?php endif; ?>
-
-                        <!-- Si es lector logueado-->
-                        <?php if (Login::role('ROLE_READER')) : ?>
+                        <?php if (Login::guest() || Login::role('ROLE_READER')) : ?>
                             <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
                         <?php endif; ?>
 
@@ -80,8 +75,13 @@
                         <?php if (Login::oneRole(['ROLE_USER', 'ROLE_WRITER'])) : ?>
                             <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
                             <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/edit/<?= $noticia->id ?>">✏️</a></button>
-                            <!-- <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/delete/<?= $noticia->id ?>">🗑️</a></button> -->
                         <?php endif; ?>
+
+                        <!-- Si es editor podrá ver  editar y borrar, no crear -->
+                        <?php if (Login::oneRole(['ROLE_EDITOR'])) : ?>
+                            <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/delete/<?= $noticia->id ?>">🗑️</a></button>
+                        <?php endif; ?>
+
                     </td>
                 </tr>
             <?php endforeach; ?>

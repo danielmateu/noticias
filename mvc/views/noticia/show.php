@@ -20,9 +20,7 @@
 
     <main>
 
-        <h2>
-            <?= $noticia->titulo ?>
-        </h2>
+        <h2><?= $noticia->titulo ?></h2>
 
         <!-- Mostramos los la noticia -->
         <section class="d-flex justify-content-between">
@@ -42,6 +40,12 @@
                     <p class="card-text">Imagen de <?= "$noticia->titulo" ?> </p>
                 </div>
             </div>
+        </section>
+
+        <!-- Mostrar Comentarios -->
+
+        <section>
+            <h2>Comentarios de usuarios</h2>
         </section>
 
 
