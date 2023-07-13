@@ -45,10 +45,21 @@
             </div>
 
             <div>
-                <h4>Comentarios de usuarios</h4>
+                <!-- <h4>Comentarios de usuarios</h4> -->
 
-                <!-- Si estamos registrados mostraremos un input para escribir un comentario nuevo -->
-
+                <!-- Si el usuario tiene role ROLE_USER -->
+                <?php if (Login::oneRole(['ROLE_USER'])) : ?>
+                    <form method="POST" action="/comentario/store">
+                        <input type="hidden" name="id_noticia" value="<?= $noticia->id ?>">
+                        <div class="mb-3">
+                            <label for="texto" class="form-label">Escribe tu comentario</label>
+                            <textarea name="texto" id="texto" cols="20" rows="10" class="form-control" placeholder="Escribe tu comentario"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-start gap-2">
+                            <input type="submit" class="btn btn-outline-primary" value="Enviar" name="enviar">
+                        </div>
+                    </form>
+                <?php endif; ?>
 
             </div>
         </section>
