@@ -105,6 +105,7 @@
 
                         <!-- Si es editor podrá ver  editar y borrar, no crear -->
                         <?php if (Login::oneRole(['ROLE_EDITOR'])) : ?>
+                            <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/edit/<?= $noticia->id ?>">✏️</a></button>
                             <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/delete/<?= $noticia->id ?>">🗑️</a></button>
                         <?php endif; ?>
 

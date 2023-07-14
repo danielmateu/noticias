@@ -150,6 +150,12 @@ class NoticiaController extends Controller
         // Buscamos la noticia en la DB
         $noticia = Noticia::find($id);
 
+        // Actualizamos la fecha de modificación
+        $noticia->updated_at = date('Y-m-d H:i:s');
+
+        // Guardamos la noticia en la DB
+        $noticia->update();
+
         // Comprobamos que la noticia existe
         if (!$noticia) {
             Session::error('No se ha encontrado la noticia');

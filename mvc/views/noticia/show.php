@@ -27,9 +27,12 @@
             <div class="d-flex justify-content-between gap-4 align-items-start">
                 <div class="col-6 d-flex flex-column p-3 bg-light shadow rounded">
                     <p><?= $noticia->texto ?></p>
-                    <div class="bg-secondary rounded p-2 text-white d-flex flex-column  ">
-                        <p class="m-0">Noticia creada por: <?= $autor->displayname ?></p>
-                        <p class="m-0">Fecha de publicación: <?= $noticia->created_at ?></p>
+                    <div class=" rounded px-1 d-flex flex-column  ">
+                        <small class="m-0">Noticia creada por: <?= $autor->displayname ?></small>
+                        <small class="m-0">Fecha de publicación: <?= $noticia->created_at ?></small>
+                        <!-- Modificación -->
+                        <small class="m-0">Última modificación: <?= $noticia->updated_at ?></small>
+
                     </div>
 
                 </div>
@@ -48,7 +51,7 @@
                 <!-- <h4>Comentarios de usuarios</h4> -->
 
                 <!-- Si el usuario tiene role ROLE_USER -->
-                <?php if (Login::oneRole(['ROLE_USER'])) : ?>
+                <?php if (Login::oneRole(['ROLE_READER'])) : ?>
                     <form method="POST" action="/comentario/store">
                         <input type="hidden" name="id_noticia" value="<?= $noticia->id ?>">
                         <div class="mb-3">

@@ -8,12 +8,16 @@
 
 PLANTEAMIENTO DE LO QUE HAY QUE HACER
 
-Queremos una aplicación que permita publicar noticias, a modo de blog.
-Las noticias tendrán un título, un texto y una imagen. También tendrán la fecha de publicación y fecha de actualización.
+- Queremos una aplicación que permita publicar noticias, a modo de blog.
+  Las noticias tendrán un título, un texto y una imagen. También tendrán la fecha de publicación
+  y fecha de actualización.
 
-- Se mostrarán en un listado de 5 noticias por página y ordenadas por fecha de publicación descendente. Al hacer clic en una noticia, se mostrará la noticia junto con los comentarios de los usualistrios en una página nueva.
+- Se mostrarán en un listado de 5 noticias por página y ordenadas por fecha de publicación descendente. Al hacer clic en una noticia, se mostrará la noticia 
+junto con los comentarios de los usualistrios en una página nueva.
 
-- Solamente podrán publicar noticias los redactores y también podrán modificar sus propias noticias. No las podrán eliminar.
+- Solamente podrán publicar noticias los redactores 
+- y también podrán modificar sus propias noticias. 
+- No las podrán eliminar.
 
 - Los editores podrán editar o borrar cualquier noticia pero no podrán crear noticias nuevas.
 
