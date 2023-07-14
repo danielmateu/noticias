@@ -29,9 +29,8 @@
 
         <!-- Mostramos foto del usuario -->
         <div class="card col-sm-6">
-            <!-- No se encuentra la imagen... -->
             <img src="<?= USER_IMAGE_FOLDER . '/' . ($user->picture ?? DEFAULT_USER_IMAGE) ?> " alt="Foto del usuario" class="card-img-top" width="100px">
-            <!-- No se encuentra la imagen... -->
+
             <div class="card-body">
                 <!-- MOstramos la info del User -->
                 <p class="card-text"><strong>Nombre:</strong> <?= " $user->displayname" ?> </p>
@@ -45,23 +44,28 @@
                     <a class="btn btn-secondary" href="/User/list/">Ver usuarios</a>
                 <?php endif; ?>
 
+                <!-- Botón que nos lleva a los comentarios del usuario -->
+                <a class="btn btn-secondary" href="/comentario/list/<?= $user->id ?>">Ver comentarios realizados</a>
+
             </div>
         </div>
 
-        <!-- Mostramos las noticias que ha creado el usuario -->
-        <div class="card col-sm-6 p-4">
-            <h3>Noticias creadas por <?= $user->displayname ?></h3>
+        <!-- Si es un usuario logueado y ha realizado comentarios, los mostramos -->
+        <?php if (Login::role('ROLE_READER') && !empty($comentarios)) : ?>
+            <div class="card col-sm-6 p-4">
+                <h3>Comentarios de <?= $user->displayname ?></h3>
 
-            <?php if (empty($noticias)) : ?>
-                <p>No hay noticias creadas por <?= $user->displayname ?></p>
-            <?php else : ?>
-                <p>
-                    <?php foreach ($noticias as $noticia) : ?>
-                        <a href="/noticia/show/<?= $noticia->id ?>"><?= $noticia->title ?></a>
-                    <?php endforeach; ?>
-                </p>
-            <?php endif; ?>
-        </div>
+                <?php if (empty($comentarios)) : ?>
+                    <p>No hay comentarios de <?= $user->displayname ?></p>
+                <?php else : ?>
+                    <ul>
+                        <?php foreach ($comentarios as $comentario) : ?>
+                            <li><a href="/noticia/show/<?= $comentario->idnoticia ?>"><?= $comentario->texto ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
 
 
 

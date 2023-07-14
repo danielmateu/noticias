@@ -6,13 +6,70 @@ class ComentarioController extends Controller
     public function index()
     {
         // Auth::check(); // solo para usuarios identificados
-        if (Login::role('ROLE_READER')) {
-            $this->loadView('comentario', [
-                'user' => Login::get(),
-                'comentarios' => Comentario::all()
-            ]);
-        }
+        // if (Login::role('ROLE_READER')) {
+        //     $this->loadView('comentario', [
+        //         'user' => Login::get(),
+        //         // 'comentarios' => Comentario::all()
+        //     ]);
+        // }
+
+        $this->list();
     }
+
+    // Método list para mostrar todos los comentarios
+    public function list(int $page = 1)
+    {
+        // Resultados por página 
+        $limit = RESULTS_PER_PAGE;
+        $total = Comentario::total();
+
+        // Crear objeto de paginación
+        $pagination = new Paginator('Comentario/list', $page, $limit, $total);
+
+        // Obtener los comentarios
+        $comentarios = Comentario::orderBy('id', 'DESC', $limit, $pagination->getOffset());
+
+        // Obtener al usuario
+        $user = Login::user();
+
+        // Cargar la vista
+        $this->loadView('comentario/list', [
+            'comentarios' => $comentarios,
+            'pagination' => $pagination,
+            'user' => $user
+        ]);
+    }
+
+    // Método para mostrar un comentario
+    public function show(int $id = 0)
+    {
+        // Auth::check(); // solo para usuarios identificados
+        if (!Login::role('ROLE_READER')) {
+            Session::error("No tienes permisos para ver un comentario");
+            redirect('/noticia');
+        }
+
+        // Comprobar que nos llega el id
+        if (!$id) {
+            Session::error('Debes indicar un comentario');
+            redirect('/noticia');
+        }
+
+        // Obtener el comentario
+        $comentario = Comentario::find($id);
+
+        // Comprobar que existe el comentario
+        if (!$comentario) {
+            Session::error('El comentario no existe');
+            redirect('/noticia');
+        }
+
+        // Cargar la vista
+        $this->loadView('comentario/show', [
+            'comentario' => $comentario
+        ]);
+    }
+
 
     public function create(int $idnoticia = 0)
     {
@@ -77,4 +134,10 @@ class ComentarioController extends Controller
             }
         }
     }
+
+    // Método para editar un comentario
+
+    // Método para actualizar un comentario
+
+    // Método para eliminar un comentario
 }

@@ -7,10 +7,16 @@ class userController extends Controller
 
         // Mostramos la vista
         Auth::check(); // solo para users identificados
+
+        $noticias = Noticia::all();
+
+        $comentarios = Comentario::all();
+        // var_dump($comentarios);
+
         $this->loadView('user/home', [
             'user' => Login::get(),
-            // 'noticias' => $noticias,
-            // 'comentarios' => $comentarios
+            'noticias' => $noticias,
+            'comentarios' => $comentarios
         ]);
     }
 
