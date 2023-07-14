@@ -149,17 +149,6 @@ class Template implements TemplateInterface
         $html .= "<ul class='navbar-nav'>";
 
         // Añadimos la clase active a la página actual
-        // $active = $_SERVER['REQUEST_URI'] == '/' ? 'active fw-semibold' : '';
-        // $html .= "<li class='nav-item '><a href='/' class='nav-link $active'>Inicio</a></li>";
-
-        // if (Login::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN'])) {
-        //     $active = $_SERVER['REQUEST_URI'] == '/Socio' ? 'active fw-semibold' : '';
-        //     $html .= "<li class='nav-item '><a href='/Socio' class='nav-link $active'>Socios</a></li>";
-        // }
-
-        // $active = $_SERVER['REQUEST_URI'] == '/noticia' ? 'active fw-semibold' : '';
-        // $html .= "<li class='nav-item '><a href='/noticia' class='nav-link $active'>Noticias</a></li>";
-
         $active = $_SERVER['REQUEST_URI'] == '/contacto' ? 'active fw-semibold' : '';
         $html .= "<li class='nav-item '><a href='/contacto' class='nav-link $active'>Contacto</a></li>";
 
@@ -175,7 +164,7 @@ class Template implements TemplateInterface
         // Si estamos logueados mostramos el nombre del user y el botón de logout
         if (Login::check()) {
             $user = Login::user();
-            $html .= "<div class='d-flex justify-content-between gap-2 flex-wrap'>";
+            $html .= "<div class='d-flex justify-content-between gap-2'>";
             $html .= "<ul class='navbar-nav'>";
 
             $active = $_SERVER['REQUEST_URI'] == '/User' ? 'active fw-semibold' : '';
@@ -184,12 +173,14 @@ class Template implements TemplateInterface
             $html .= "</ul>";
             $html .= "</div>";
         } else {
-            $html .= "<div class='d-flex justify-content-between gap-2 flex-wrap'>";
+            $html .= "<div class='d-flex justify-content-between gap-2'>";
             $active = $_SERVER['REQUEST_URI'] == '/Login' ? 'active fw-semibold' : '';
-            $html .= "<div class='nav-item'><a href='/Login' class='nav-link $active'>Login</a></div>";
+            $html .= "<ul class='navbar-nav'>";
+            $html .= "<li class='nav-item'><a href='/Login' class='nav-link $active'>Login</a></li>";
             // Botón de registro
             $active = $_SERVER['REQUEST_URI'] == '/Register' ? 'active fw-semibold' : '';
-            $html .= "<div class='nav-item'><a href='/Register' class='nav-link $active'>Registro</a></div>";
+            $html .= "<li class='nav-item'><a href='/Register' class='nav-link $active'>Registro</a></li>";
+            $html .= "</ul>";
             $html .= "</div>";
         }
 
