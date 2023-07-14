@@ -8,36 +8,32 @@
 
 PLANTEAMIENTO DE LO QUE HAY QUE HACER
 
-- Queremos una aplicación que permita publicar noticias, a modo de blog.
-  Las noticias tendrán un título, un texto y una imagen. También tendrán la fecha de publicación
-  y fecha de actualización.
+- Queremos una aplicación que permita publicar noticias, a modo de blog. Las noticias tendrán un título, un texto y una imagen. También tendrán la fecha de publicación y fecha de actualización. OK
 
-- Se mostrarán en un listado de 5 noticias por página y ordenadas por fecha de publicación descendente. Al hacer clic en una noticia, se mostrará la noticia
-  junto con los comentarios de los usualistrios en una página nueva.
+- Se mostrarán en un listado de 5 noticias por página y ordenadas por fecha de publicación descendente. Al hacer clic en una noticia, se mostrará la noticia junto con los comentarios de los usualistrios en una página nueva. OK
 
-- Solamente podrán publicar noticias los redactores
-- y también podrán modificar sus propias noticias.
-- No las podrán eliminar.
+- Solamente podrán publicar noticias los redactores y también podrán modificar sus propias noticias. No las podrán eliminar. OK
 
-- Los editores podrán editar o borrar cualquier noticia pero no podrán crear noticias nuevas.
+- Los editores podrán editar o borrar cualquier noticia pero no podrán crear noticias nuevas. OK
 
-- Existirá un perfil de administrador. El usuario administrador podrá añadir nuevos usuarios.
+- Existirá un perfil de administrador. El usuario administrador podrá añadir nuevos usuarios. OK
 
-- Un lector podrá darse de alta en el sistema mediante la operación de registro. Un lector será también un usuario,con el rol de lector y no podrá modificar ni crear noticias,
-- pero sí comentarlas.
+- Un lector podrá darse de alta en el sistema mediante la operación de registro. Un lector será también un usuario,con el rol de lector y no podrá modificar ni crear noticias, pero sí comentarlas. OK
 
-- Los usuarios invitados (no identificados) podrán leer las noticias y nada más.
+- Los usuarios invitados (no identificados) podrán leer las noticias y nada más. OK
 
-- Existirá una home de usuario (página personal) y una operación de contacto.
+- Existirá una home de usuario (página personal) y una operación de contacto. OK
 
-- OPCIONAL: búsqueda de noticias.
-- OPCIONAL: el administrador puede quitar o añadir roles a los usuarios.
-- OPCIONAL: el administrador puede dar de baja usuarios.
+- OPCIONAL: búsqueda de noticias. OK
+- OPCIONAL: el administrador puede quitar o añadir roles a los usuarios. OK
+- OPCIONAL: el administrador puede dar de baja usuarios. OK
 
-OPCIONAL: el usuario moderador puede eliminar comentarios.
+- OPCIONAL: el usuario moderador puede eliminar comentarios. OK
+- OPCIONAL: el lector podrá borrar sus propios comentarios. OK
+
 OPCIONAL: en la home de un usuario redactor se listan todas las noticias que ha redactado.
 OPCIONAL: en la home de un usuario lector se listan todos los comentarios que ha hecho.
-OPCIONAL: el lector podrá borrar sus propios comentarios.
+
 
 CASOS DE USO
 
@@ -51,7 +47,7 @@ CASOS DE USO
 
 - CU05 comentar noticia: un lector correctamente identificado podrá pulsar el enlace “comentar” en la página de detalles de la noticia. El sistema le mostrará un formulario, el usuario lo rellena y lo envía, el sistema guarda el comentario y le redirige a los detalles de la noticia (PRIORIDAD BAJA). OK
 
-CU06 - OPCIONAL borrar comentario: desde los detalles de la noticia o desde la home, el usuario puede borrar sus comentarios (PRIORIDAD BAJA).
+- CU06 - OPCIONAL borrar comentario: desde los detalles de la noticia o desde la home, el usuario puede borrar sus comentarios (PRIORIDAD BAJA).
 
 - CU07 escribir noticia: el redactor pulsará el enlace “escribir noticia” en el menú. Sistema muestra formulario, redactor escribe y envía, sistema guarda y redirige a detalles de la noticia.
 

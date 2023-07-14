@@ -44,14 +44,16 @@
                     <a class="btn btn-secondary" href="/User/list/">Ver usuarios</a>
                 <?php endif; ?>
 
+                <!-- Si el usuario ha realizado comentarios -->
+
                 <!-- Botón que nos lleva a los comentarios del usuario -->
-                <a class="btn btn-secondary" href="/comentario/list/<?= $user->id ?>">Ver comentarios realizados</a>
+                <!-- <a class="btn btn-secondary" href="/comentario/list/<?= $user->id ?>">Ver comentarios realizados</a> -->
 
             </div>
         </div>
 
         <!-- Si es un usuario logueado y ha realizado comentarios, los mostramos -->
-        <?php if (Login::role('ROLE_READER') && !empty($comentarios)) : ?>
+        <!-- <?php if (Login::role('ROLE_USER') && !empty($comentarios)) : ?>
             <div class="card col-sm-6 p-4">
                 <h3>Comentarios de <?= $user->displayname ?></h3>
 
@@ -65,7 +67,7 @@
                     </ul>
                 <?php endif; ?>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
 
 
 

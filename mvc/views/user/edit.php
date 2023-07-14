@@ -50,8 +50,6 @@
                         <div class="mb-3">
                             <label for="roles" class="form-label">Roles</label>
                             <select name="roles" id="roles" class="form-select" required>
-                                <!-- <option value="ROLE_USER">Usuario</option>
-                    <option value="ROLE_ADMIN">Administrador</option> -->
                                 <?php foreach (USER_ROLES as $roleName => $roleValue) : ?>
                                     <option name='roles' value="<?= $roleValue ?>"><?= $roleName ?></option>
                                 <?php endforeach; ?>

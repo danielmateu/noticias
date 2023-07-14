@@ -62,8 +62,8 @@
                         <?php foreach ($comentarios as $comentario) : ?>
                             <a class="list-group-item list-group-item-primary p-2 rounded" href=" /comentario/show/<?= $comentario->id ?>"><?= $comentario->texto ?></a></li>
                         <?php endforeach; ?>
-                        <!-- Si el comentario pertenece al usuario, se le permite eliminar -->
-                        <?php if ($comentario->iduser == $user->id) : ?>
+                        <!-- Si el comentario pertenece al usuario o tiene Role de Admin se le permite eliminar -->
+                        <?php if (Login::isAdmin() || Login::get()->id == $comentario->iduser) : ?>
                             <!-- Input hidden para mandar por post el id del comentario -->
                             <input type="hidden" name="id" value="<?= $comentario->id ?>">
                             <a class="btn btn-outline-danger" href="/comentario/delete/<?= $comentario->id ?>">Eliminar comentario</a>

@@ -56,21 +56,21 @@
 
 
             <!-- Mostramos las noticias -->
-
         </div>
-
         <!-- Solamente podrán publicar noticias los redactores y también podrán modificar sus propias noticias. No las podrán eliminar.
-            -->
-        <?php if (Login::role('ROLE_WRITER')) : ?>
-            <a href="/noticia/create" class="btn btn-outline-primary mb-2">Crear Noticia</a>
-        <?php endif; ?>
-
-        <!-- Paginator -->
-        <div>
-            <?=
-            $paginator->stats()
-            ?>
+        -->
+        <div class="d-flex align-items-center justify-content-between my-2">
+            <?php if (Login::role('ROLE_WRITER')) : ?>
+                <a href="/noticia/create" class="btn btn-outline-primary mb-2">Crear Noticia</a>
+                <!-- Paginator -->
+            <?php endif; ?>
+            <div>
+                <?=
+                $paginator->stats()
+                ?>
+            </div>
         </div>
+
 
         <table class="table table-dark table-striped table-hover rounded-3">
             <thead>
@@ -89,7 +89,6 @@
                     </td>
                     <td><?= $noticia->titulo ?></td>
                     <td class="d-none d-md-table-cell "><?= acortarTexto($noticia->texto) ?></td>
-                    <!-- Cantidad de comentarios que tiene la noticia -->
 
                     <!-- <td class="d-none d-md-table-cell"><?= $noticia->iduser ?></td> -->
                     <td class="">
@@ -101,7 +100,11 @@
                         <!-- Si es escritor -->
                         <?php if (Login::oneRole(['ROLE_WRITER'])) : ?>
                             <button class="btn btn-secondary"><a class="list-group-item" href=" /noticia/show/<?= $noticia->id ?>">🔎</a></button>
-                            <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/edit/<?= $noticia->id ?>">✏️</a></button>
+                            <!-- Solo puede modificar sus propias noticias -->
+                            <?php if ($user->id == $noticia->iduser) : ?>
+                                <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/edit/<?= $noticia->id ?>">✏️</a></button>
+                            <?php endif; ?>
+                            <!-- <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/edit/<?= $noticia->id ?>">✏️</a></button> -->
                         <?php endif; ?>
 
                         <!-- Si es editor podrá ver  editar y borrar, no crear -->

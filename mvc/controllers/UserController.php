@@ -182,10 +182,10 @@ class userController extends Controller
         $user = User::find($_POST['id']);
 
         // Eliminamos el role anterior
-        $rolesActuales = $user->getRoles();
-        foreach ($rolesActuales as $role) {
-            $user->removeRole($role);
-        }
+        // $rolesActuales = $user->getRoles();
+        // foreach ($rolesActuales as $role) {
+        //     $user->removeRole($role);
+        // }
 
         // Si no existe el user
         if (!$user) {
@@ -333,30 +333,5 @@ class userController extends Controller
                 redirect("/User/delete/$id");
             }
         }
-    }
-
-    // Método que nos permite mostrar las noticias creadas por un usuario
-    public function news(int $id = 0)
-    {
-        // Comprobamos si llega el id del user 
-        if (!$id) {
-            throw new NotFoundException("No se indicó el user");
-        }
-
-        // Recuperar el user con el id especificado
-        $user = User::find($id);
-
-        // Si no existe el user mostramos un error
-        if (!$user) {
-            throw new Exception("No se encontró el user $id");
-        }
-
-        $noticias = $user->hasMany('noticia');
-
-        echo $noticias;
-
-        // Cargamos la vista para mostrar las noticias creadas por el usuario
-        // $this->loadView('user/showNews', ['user' => $user]);
-        return $noticias;
     }
 }
