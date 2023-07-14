@@ -4,9 +4,13 @@ class userController extends Controller
     // Muestra la pagina home del user
     public function home()
     {
+
+        // Mostramos la vista
         Auth::check(); // solo para users identificados
         $this->loadView('user/home', [
-            'user' => Login::get()
+            'user' => Login::get(),
+            // 'noticias' => $noticias,
+            // 'comentarios' => $comentarios
         ]);
     }
 
@@ -40,6 +44,8 @@ class userController extends Controller
 
         // Obtener el user
         $user = User::find($id);
+        // Obtener las noticias del user
+
 
         // Comprobar que el user existe
         if (!$user) {
@@ -47,7 +53,8 @@ class userController extends Controller
         }
 
         $this->loadView('user/show', [
-            'user' => $user
+            'user' => $user,
+
         ]);
     }
 

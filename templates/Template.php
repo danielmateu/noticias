@@ -303,12 +303,17 @@ EOT : '';
             $html .= $selectedOrder == $nombre ? 'selected' : '';
             $html .= ">$nombre</option>";
         }
-
         return $html . "</select>
+            <div class='d-flex justify-content-center'>
+                <div>
     				<input type='radio' name='sentidoOrden' value='ASC'>
     				<label>Ascendente</label>
+                </div>
+                <div>
     				<input type='radio' name='sentidoOrden' value='DESC' checked>
     				<label>Descendente</label>
+                </div>
+            </div>
     				<input class='btn btn-outline-secondary' type='submit' name='filtrar' value='Filtrar'>
     			</form>";
     }

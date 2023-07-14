@@ -1,9 +1,35 @@
 <?php
 class ComentarioController extends Controller
 {
+
+    // Mostramos la vista para la creación de comentarios
+    public function index()
+    {
+        // Auth::check(); // solo para usuarios identificados
+        if (Login::role('ROLE_READER')) {
+            $this->loadView('comentario', [
+                'user' => Login::get(),
+                'comentarios' => Comentario::all()
+            ]);
+        }
+    }
+
+    public function create(int $idnoticia = 0)
+    {
+        // Auth::check(); // solo para usuarios identificados
+        if (!Login::role('ROLE_READER')) {
+            Session::error("No tienes permisos para crear un libro");
+            redirect('/');
+        }
+
+        $this->loadView('comentario/create', [
+            'idnoticia' => $idnoticia
+        ]);
+    }
+
     public function store()
     {
-        if (!Login::role('ROLE_USER')) {
+        if (!Login::role('ROLE_READER')) {
             Session::error("No tienes permisos para crear un comentario");
             redirect('/');
         }
@@ -17,6 +43,7 @@ class ComentarioController extends Controller
         $texto = $_POST['texto'];
         $user = Login::user();
         $iduser = $user->id;
+
         $idnoticia = $_POST['id_noticia'];
 
         // Comprobamos que los datos sean correctos
@@ -27,11 +54,10 @@ class ComentarioController extends Controller
 
         // Creamos el comentario
         $comentario = new Comentario();
-
         $comentario->texto = $texto;
         $comentario->iduser = $iduser;
         $comentario->idnoticia = $idnoticia;
-        
+
         // Intentamos guardar la noticia en DB
         try {
             //code...

@@ -55,7 +55,7 @@
             <!-- FIN Filtro Buscador -->
 
 
-            <!-- Mostraos las noticias -->
+            <!-- Mostramos las noticias -->
 
         </div>
 

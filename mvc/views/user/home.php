@@ -25,7 +25,7 @@
     <?= (TEMPLATE)::getFlashes() ?>
 
     <h2><?= "Hello $user->displayname! Welcome to your Dashboard" ?></h2>
-    <main class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+    <main class="d-flex flex-column flex-sm-row align-items-start gap-2">
 
         <!-- Mostramos foto del usuario -->
         <div class="card col-sm-6">
@@ -56,8 +56,8 @@
                 <p>No hay noticias creadas por <?= $user->displayname ?></p>
             <?php else : ?>
                 <p>
-                    <?php foreach ($noticias as $new) : ?>
-                        <a href="/new/show/<?= $new->id ?>"><?= $new->title ?></a>
+                    <?php foreach ($noticias as $noticia) : ?>
+                        <a href="/noticia/show/<?= $noticia->id ?>"><?= $noticia->title ?></a>
                     <?php endforeach; ?>
                 </p>
             <?php endif; ?>
