@@ -60,7 +60,7 @@
                 <?php else : ?>
                     <ul>
                         <?php foreach ($comentarios as $comentario) : ?>
-                            <li><a href="/noticia/show/<?= $comentario->idnoticia ?>"><?= $comentario->texto ?></a></li>
+                            <li><a href="/comentario/show/<?= $comentario->id ?>"><?= $comentario->texto ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>

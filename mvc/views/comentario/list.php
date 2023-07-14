@@ -12,7 +12,7 @@
 <body>
 
     <?= (TEMPLATE)::getMenuBootstrap() ?>
-    <?= (TEMPLATE)::getHeaderAlt("Comentarios de $user->displayname") ?>
+    <?= (TEMPLATE)::getHeaderAlt("Comentarios") ?>
     <?= (TEMPLATE)::getSuccess() ?>
     <?= (TEMPLATE)::getError() ?>
 
@@ -37,10 +37,13 @@
                     <td class="d-none d-md-table-cell"><?= $comentario->created_at ?></td>
                     <td class="d-none d-md-table-cell"><?= $comentario->idnoticia ?></td>
                     <td class="">
-                        <!-- Botón que dirige a la noticia -->
-                        <button class="btn btn-secondary"><a class="list-group-item" href="/noticia/show/<?= $comentario->idnoticia ?>">🔎</a></button>
-                        <button class="btn btn-secondary"><a class="list-group-item" href="/comentario/delete/<?= $comentario->id ?>">🗑️</a></button>
-                        <button class="btn btn-secondary"><a class="list-group-item" href="/comentario/edit/<?= $comentario->id ?>">✏️</a></button>
+                        <!-- Botón que dirige al comentario -->
+                        <button class="btn btn-secondary"><a class="list-group-item" href="/comentario/show/<?= $comentario->id ?>">🔎</a></button>
+                        <!-- Solo permitimos editar y eliminar al creador del comentario -->
+                        <?php if (Login::get() && Login::get()->id == $comentario->iduser) : ?>
+                            <button class="btn btn-secondary"><a class="list-group-item" href="/comentario/edit/<?= $comentario->id ?>">✏️</a></button>
+                            <button class="btn btn-secondary"><a class="list-group-item" href="/comentario/delete/<?= $comentario->id ?>">🗑️</a></button>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

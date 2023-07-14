@@ -51,20 +51,28 @@
             </div>
 
             <div>
-                <!-- <h4>Comentarios de usuarios</h4> -->
                 <!-- Si la noticia tiene comentarios los mostramos -->
                 <?php if (empty($comentarios)) : ?>
-                    <p>No hay comentarios en esta noticia</p>
+                    <div class="alert alert-primary mt-4">
+                        <p>Aun no hay comentarios en esta noticia 😋</p>
+                    </div>
                 <?php else : ?>
-                    <ul>
+                    <h4>Comentarios de usuarios</h4>
+                    <div class="d-flex flex-column gap-2 p-2">
                         <?php foreach ($comentarios as $comentario) : ?>
-                            <li><a href="/noticia/show/<?= $comentario->idnoticia ?>"><?= $comentario->texto ?></a></li>
+                            <a class="list-group-item list-group-item-primary p-2 rounded" href=" /comentario/show/<?= $comentario->id ?>"><?= $comentario->texto ?></a></li>
                         <?php endforeach; ?>
-                    </ul>
+                        <!-- Si el comentario pertenece al usuario, se le permite eliminar -->
+                        <?php if ($comentario->iduser == $user->id) : ?>
+                            <!-- Input hidden para mandar por post el id del comentario -->
+                            <input type="hidden" name="id" value="<?= $comentario->id ?>">
+                            <a class="btn btn-outline-danger" href="/comentario/delete/<?= $comentario->id ?>">Eliminar comentario</a>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
 
                 <!-- Si el usuario tiene role ROLE_USER -->
-                <?php if (Login::oneRole(['ROLE_READER'])) : ?>
+                <?php if (Login::oneRole(['ROLE_USER'])) : ?>
                     <!-- Enlace para crear comentario -->
                     <a class="btn btn-outline-primary" href="/comentario/create/<?= $noticia->id ?>">Crear comentario</a>
                 <?php endif; ?>

@@ -12,11 +12,11 @@ PLANTEAMIENTO DE LO QUE HAY QUE HACER
   Las noticias tendrán un título, un texto y una imagen. También tendrán la fecha de publicación
   y fecha de actualización.
 
-- Se mostrarán en un listado de 5 noticias por página y ordenadas por fecha de publicación descendente. Al hacer clic en una noticia, se mostrará la noticia 
-junto con los comentarios de los usualistrios en una página nueva.
+- Se mostrarán en un listado de 5 noticias por página y ordenadas por fecha de publicación descendente. Al hacer clic en una noticia, se mostrará la noticia
+  junto con los comentarios de los usualistrios en una página nueva.
 
-- Solamente podrán publicar noticias los redactores 
-- y también podrán modificar sus propias noticias. 
+- Solamente podrán publicar noticias los redactores
+- y también podrán modificar sus propias noticias.
 - No las podrán eliminar.
 
 - Los editores podrán editar o borrar cualquier noticia pero no podrán crear noticias nuevas.
@@ -41,16 +41,15 @@ OPCIONAL: el lector podrá borrar sus propios comentarios.
 
 CASOS DE USO
 
-- CU01 - Registro de usuario: en la parte superior derecha, el usuario hará clic sobre el enlace “registro”. El sistema le mostrará el formulario de registro. El usuario rellena los datos y pulsa el botón “enviar”. El sistema guarda los datos y notifica al usuario que el proceso se ha realizado correctamente.
+- CU01 - Registro de usuario: en la parte superior derecha, el usuario hará clic sobre el enlace “registro”. El sistema le mostrará el formulario de registro. El usuario rellena los datos y pulsa el botón “enviar”. El sistema guarda los datos y notifica al usuario que el proceso se ha realizado correctamente. OK
 
-- CU02 contacto - desde el menú principal, el usuario pulsará “contactar”. El sistema le mostrará un formulario de contacto que el usuario rellenará y enviará. Llegará un mail al administrador con la consulta y el sistema redirigirá al usuario a la portada junto con un mensaje de éxito.
+- CU02 contacto - desde el menú principal, el usuario pulsará “contactar”. El sistema le mostrará un formulario de contacto que el usuario rellenará y enviará. Llegará un mail al administrador con la consulta y el sistema redirigirá al usuario a la portada junto con un mensaje de éxito. OK
 
-- CU03 ver listado noticias: cuando el usuario acceda a la aplicación se le mostrará el listado de noticias en la portada.
+- CU03 ver listado noticias: cuando el usuario acceda a la aplicación se le mostrará el listado de noticias en la portada. OK
 
-- CU04 ver noticia: el usuario pulsará el enlace “ver más” sobre una noticia. El sistema le mostrará la noticia completa
-  junto con los comentarios que tenga.
+- CU04 ver noticia: el usuario pulsará el enlace “ver más” sobre una noticia. El sistema le mostrará la noticia completa junto con los comentarios que tenga. OK
 
-CU05 comentar noticia: un lector correctamente identificado podrá pulsar el enlace “comentar” en la página de detalles de la noticia. El sistema le mostrará un formulario, el usuario lo rellena y lo envía, el sistema guarda el comentario y le redirige a los detalles de la noticia (PRIORIDAD BAJA).
+- CU05 comentar noticia: un lector correctamente identificado podrá pulsar el enlace “comentar” en la página de detalles de la noticia. El sistema le mostrará un formulario, el usuario lo rellena y lo envía, el sistema guarda el comentario y le redirige a los detalles de la noticia (PRIORIDAD BAJA). OK
 
 CU06 - OPCIONAL borrar comentario: desde los detalles de la noticia o desde la home, el usuario puede borrar sus comentarios (PRIORIDAD BAJA).
 

@@ -21,14 +21,17 @@ class NoticiaController extends Controller
         // Obtenemos los comentarios
         $comentarios = Comentario::all();
 
-        var_dump($comentarios);
+        // Obtenemos el usuario
+        $user = Login::user();
+
+        // var_dump($user);
 
         $this->loadView('noticia/list', [
             'noticias' => $noticias,
             'comentarios' => $comentarios,
             'paginator' => $paginator,
             'filtro' => $filtro,
-
+            'user' => $user
         ]);
     }
 
@@ -125,6 +128,8 @@ class NoticiaController extends Controller
         // Buscamos la noticia en la DB
         $noticia = Noticia::find($id);
         $autor = $noticia->belongsTo('User', 'iduser');
+        // Obtenemos el usuario
+        $user = Login::user();
 
         // Comprobamos que la noticia existe
         if (!$noticia) {
@@ -139,7 +144,8 @@ class NoticiaController extends Controller
         $this->loadView('noticia/show', [
             'noticia' => $noticia,
             'autor' => $autor,
-            'comentarios' => $comentarios
+            'comentarios' => $comentarios,
+            'user' => $user
         ]);
     }
 
