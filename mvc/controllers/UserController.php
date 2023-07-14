@@ -9,7 +9,6 @@ class userController extends Controller
         Auth::check(); // solo para users identificados
 
         $noticias = Noticia::all();
-
         $comentarios = Comentario::all();
         // var_dump($comentarios);
 

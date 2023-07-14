@@ -52,8 +52,16 @@
 
             <div>
                 <!-- <h4>Comentarios de usuarios</h4> -->
-
-
+                <!-- Si la noticia tiene comentarios los mostramos -->
+                <?php if (empty($comentarios)) : ?>
+                    <p>No hay comentarios en esta noticia</p>
+                <?php else : ?>
+                    <ul>
+                        <?php foreach ($comentarios as $comentario) : ?>
+                            <li><a href="/noticia/show/<?= $comentario->idnoticia ?>"><?= $comentario->texto ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
 
                 <!-- Si el usuario tiene role ROLE_USER -->
                 <?php if (Login::oneRole(['ROLE_READER'])) : ?>

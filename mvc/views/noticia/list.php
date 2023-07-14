@@ -78,8 +78,7 @@
                     <th scope="col" class="">Imagen</th>
                     <th scope="col" class="">Título</th>
                     <th scope="col" class="d-none d-md-table-cell">Texto</th>
-                    <!-- <th scope="col" class="d-none d-md-table-cell">ID Creador</th> -->
-                    <!-- <th scope="col" class="">ISBN</th> -->
+                    <!-- <th scope="col" class="d-none d-md-table-cell">Comentarios</th> -->
                     <th scope="col" class="">Acciones</th>
                 </tr>
             </thead>
@@ -90,6 +89,8 @@
                     </td>
                     <td><?= $noticia->titulo ?></td>
                     <td class="d-none d-md-table-cell "><?= acortarTexto($noticia->texto) ?></td>
+                    <!-- Cantidad de comentarios que tiene la noticia -->
+
                     <!-- <td class="d-none d-md-table-cell"><?= $noticia->iduser ?></td> -->
                     <td class="">
                         <!-- Si no está logueado o tiene role de lector -->

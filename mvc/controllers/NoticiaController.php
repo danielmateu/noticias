@@ -18,18 +18,26 @@ class NoticiaController extends Controller
         $noticias = $filtro ?
             Noticia::filter($filtro, $limit, $paginator->getOffset()) : Noticia::orderBy('id', 'DESC', $limit, $paginator->getOffset());
 
+        // Obtenemos los comentarios de la noticia
+        $comentarios = Comentario::all();
+
+        var_dump($comentarios);
+
+        // Quiero ver los comentarios de la noticia
 
         $this->loadView('noticia/list', [
             'noticias' => $noticias,
+            'comentarios' => $comentarios,
             'paginator' => $paginator,
             'filtro' => $filtro,
+
         ]);
     }
 
     public function create()
     {
         if (!Login::role('ROLE_WRITER')) {
-            Session::error("No tienes permisos para crear un libro");
+            Session::error("No tienes permisos para crear una noticia");
             redirect('/');
         }
 
@@ -119,6 +127,7 @@ class NoticiaController extends Controller
         // Buscamos la noticia en la DB
         $noticia = Noticia::find($id);
         $autor = $noticia->belongsTo('User', 'iduser');
+        $comentarios = Comentario::all();
 
         // Comprobamos que la noticia existe
         if (!$noticia) {
@@ -129,7 +138,8 @@ class NoticiaController extends Controller
         // Mostramos la vista
         $this->loadView('noticia/show', [
             'noticia' => $noticia,
-            'autor' => $autor
+            'autor' => $autor,
+            'comentarios' => $comentarios
         ]);
     }
 
