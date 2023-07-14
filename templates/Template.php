@@ -283,7 +283,7 @@ EOT : '';
         string $selectedOrder = ''
 
     ) {
-        $html = "<form method='POST' class='filtro derecha' action='$action'>";
+        $html = "<form method='POST' class='d-flex flex-column flex-lg-row m-0 justify-content-lg-center gap-1 gap-lg-4 align-items-lg-center' action='$action'>";
         $html .= "<input type='text' name='texto' placeholder='Buscar...'> ";
         $html .= "<select name='campo'>";
 
@@ -295,7 +295,8 @@ EOT : '';
 
         $html .= "</select>";
 
-        $html .= "<label>Ordenar por:</label>";
+
+        $html .= "<div class='d-flex flex-column flex-lg-row justify-content-center gap-2'><label class='mb-0'>Ordenar por:</label>";
         $html .= "<select name='campoOrden'>";
 
         foreach ($orders as $nombre => $valor) {
@@ -303,19 +304,19 @@ EOT : '';
             $html .= $selectedOrder == $nombre ? 'selected' : '';
             $html .= ">$nombre</option>";
         }
+
         return $html . "</select>
-            <div class='d-flex justify-content-center'>
-                <div>
+                <div class='m-0'>
     				<input type='radio' name='sentidoOrden' value='ASC'>
-    				<label>Ascendente</label>
+    				<label class='m-0'>Ascendente</label>
                 </div>
                 <div>
     				<input type='radio' name='sentidoOrden' value='DESC' checked>
-    				<label>Descendente</label>
+    				<label class='m-0'>Descendente</label>
                 </div>
             </div>
     				<input class='btn btn-outline-secondary' type='submit' name='filtrar' value='Filtrar'>
-    			</form>";
+    	</form>";
     }
 
     // retorna el formulario de "quitar filtro"
@@ -324,9 +325,8 @@ EOT : '';
         string $action = '/'
     ) {
 
-        return "<form class='filtro derecha' method='POST' action='$action'>
-					<label>$filtro</label>
-					<input class='button' style='display:inline' type='submit' 
+        return "<form class='' method='POST' action='$action'>
+					<input class='btn btn-outline-secondary' style='display:inline' type='submit' 
 					       name='quitarFiltro' value='Quitar filtro'>
 				</form>";
     }

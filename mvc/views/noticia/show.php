@@ -28,10 +28,13 @@
                 <div class="col-6 d-flex flex-column p-3 bg-light shadow rounded">
                     <p><?= $noticia->texto ?></p>
                     <div class=" rounded px-1 d-flex flex-column  ">
-                        <small class="m-0">Noticia creada por: <?= $autor->displayname ?></small>
-                        <small class="m-0">Fecha de publicación: <?= $noticia->created_at ?></small>
+                        <small class="m-0">Noticia creada por: <strong><?= $autor->displayname ?></strong></small>
+                        <small class="m-0">Fecha de publicación: <strong><?= $noticia->created_at ?></strong> </small>
                         <!-- Modificación -->
-                        <small class="m-0">Última modificación: <?= $noticia->updated_at ?></small>
+                        <!-- Si la noticia se ha modificado -->
+                        <?php if ($noticia->updated_at) : ?>
+                            <small class="m-0">Última modificación: <strong><?= $noticia->updated_at ?></strong> </small>
+                        <?php endif; ?>
 
                     </div>
 
@@ -49,7 +52,7 @@
 
             <div>
                 <!-- <h4>Comentarios de usuarios</h4> -->
-                
+
 
 
                 <!-- Si el usuario tiene role ROLE_USER -->

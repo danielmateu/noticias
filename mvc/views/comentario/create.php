@@ -18,10 +18,10 @@
     <?= Template::getSuccess() ?>
     <?= Template::getError() ?>
 
-    <main class="d-md-flex justify-content-between align-items-center gap-4">
+    <main class="">
 
         <!-- Formulario para creación de comentario -->
-        <form method="POST" action="/comentario/store">
+        <form method="POST" action="/comentario/store" class="col-10">
             <input type="hidden" name="id_noticia" value="<?= $idnoticia ?>">
             <div class="mb-3">
                 <label for="texto" class="form-label">Escribe tu comentario</label>

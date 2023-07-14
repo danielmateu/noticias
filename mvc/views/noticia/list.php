@@ -26,7 +26,7 @@
 
     <main>
 
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-center">
 
             <!-- Filtro y Buscador -->
             <!-- Si hay un filtro aplicado -->
