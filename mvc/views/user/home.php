@@ -24,11 +24,10 @@
     <?= (TEMPLATE)::getHeaderAlt('Portada') ?>
     <?= (TEMPLATE)::getFlashes() ?>
 
-    <main class="d-flex flex-column align-items-start align-items-md-center gap-2">
-        <h2><?= "Hello $user->displayname! Welcome to your Dashboard" ?></h2>
+    <h2><?= "Hello $user->displayname! Welcome to your Dashboard" ?></h2>
+    <main class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
 
         <!-- Mostramos foto del usuario -->
-
         <div class="card col-sm-6">
             <!-- No se encuentra la imagen... -->
             <img src="<?= USER_IMAGE_FOLDER . '/' . ($user->picture ?? DEFAULT_USER_IMAGE) ?> " alt="Foto del usuario" class="card-img-top" width="100px">
@@ -39,6 +38,7 @@
                 <p class="card-text"><strong>Email:</strong> <?= " $user->email" ?> </p>
                 <p class="card-text"><strong>Teléfono:</strong> <?= " $user->phone" ?> </p>
                 <!-- Rol -->
+                <p class="card-text"><strong>Role:</strong> <?= implode(',', $user->roles) ?> </p>
 
                 <!-- Si es admin, mostrar el link a la gestión de usuarios -->
                 <?php if (Login::oneRole(['ROLE_ADMIN'])) : ?>
@@ -47,6 +47,24 @@
 
             </div>
         </div>
+
+        <!-- Mostramos las noticias que ha creado el usuario -->
+        <div class="card col-sm-6 p-4">
+            <h3>Noticias creadas por <?= $user->displayname ?></h3>
+
+            <?php if (empty($noticias)) : ?>
+                <p>No hay noticias creadas por <?= $user->displayname ?></p>
+            <?php else : ?>
+                <p>
+                    <?php foreach ($noticias as $new) : ?>
+                        <a href="/new/show/<?= $new->id ?>"><?= $new->title ?></a>
+                    <?php endforeach; ?>
+                </p>
+            <?php endif; ?>
+        </div>
+
+
+
 
 
     </main>

@@ -27,23 +27,24 @@ Las noticias tendrán un título, un texto y una imagen. También tendrán la fe
 - Existirá una home de usuario (página personal) y una operación de contacto.
 
 - OPCIONAL: búsqueda de noticias.
+- OPCIONAL: el administrador puede quitar o añadir roles a los usuarios.
+- OPCIONAL: el administrador puede dar de baja usuarios.
 
 OPCIONAL: el usuario moderador puede eliminar comentarios.
 OPCIONAL: en la home de un usuario redactor se listan todas las noticias que ha redactado.
 OPCIONAL: en la home de un usuario lector se listan todos los comentarios que ha hecho.
-OPCIONAL: el administrador puede quitar o añadir roles a los usuarios.
-OPCIONAL: el administrador puede dar de baja usuarios.
 OPCIONAL: el lector podrá borrar sus propios comentarios.
 
 CASOS DE USO
 
-CU01 - Registro de usuario: en la parte superior derecha, el usuario hará clic sobre el enlace “registro”. El sistema le mostrará el formulario de registro. El usuario rellena los datos y pulsa el botón “enviar”. El sistema guarda los datos y notifica al usuario que el proceso se ha realizado correctamente.
+- CU01 - Registro de usuario: en la parte superior derecha, el usuario hará clic sobre el enlace “registro”. El sistema le mostrará el formulario de registro. El usuario rellena los datos y pulsa el botón “enviar”. El sistema guarda los datos y notifica al usuario que el proceso se ha realizado correctamente.
 
-CU02 contacto - desde el menú principal, el usuario pulsará “contactar”. El sistema le mostrará un formulario de contacto que el usuario rellenará y enviará. Llegará un mail al administrador con la consulta y el sistema redirigirá al usuario a la portada junto con un mensaje de éxito.
+- CU02 contacto - desde el menú principal, el usuario pulsará “contactar”. El sistema le mostrará un formulario de contacto que el usuario rellenará y enviará. Llegará un mail al administrador con la consulta y el sistema redirigirá al usuario a la portada junto con un mensaje de éxito.
 
 - CU03 ver listado noticias: cuando el usuario acceda a la aplicación se le mostrará el listado de noticias en la portada.
 
-CU04 ver noticia: el usuario pulsará el enlace “ver más” sobre una noticia. El sistema le mostrará la noticia completa junto con los comentarios que tenga.
+- CU04 ver noticia: el usuario pulsará el enlace “ver más” sobre una noticia. El sistema le mostrará la noticia completa
+  junto con los comentarios que tenga.
 
 CU05 comentar noticia: un lector correctamente identificado podrá pulsar el enlace “comentar” en la página de detalles de la noticia. El sistema le mostrará un formulario, el usuario lo rellena y lo envía, el sistema guarda el comentario y le redirige a los detalles de la noticia (PRIORIDAD BAJA).
 
@@ -75,7 +76,7 @@ INSTRUCCIONES PARA EL PROYECTO
 
 CONSIDERACIÓN 1 (AUTORIZACIÓN):
 
-Ejemplo: solamente el usuario redactor puede escribir una noticia, por tanto en los métodos create() y store() de NoticiaController tenemos que vigilar la autorización, con:
+- Ejemplo: solamente el usuario redactor puede escribir una noticia, por tanto en los métodos create() y store() de NoticiaController tenemos que vigilar la autorización, con:
 
 Auth::role(‘ROLE_WRITER’);
 
@@ -90,7 +91,7 @@ Habrá que controlar la autorización en todos los métodos de controlador que n
 
 CONSIDERACIÓN 2 (entidades relacionadas):
 
-Al guardar una noticia, se guarda el id del usuario que la escribe en el campo iduser de la noticia. Por tanto, en el método store() de NoticiaController...
+- Al guardar una noticia, se guarda el id del usuario que la escribe en el campo iduser de la noticia. Por tanto, en el método store() de NoticiaController...
 
 //…
 $noticia = new Noticia();

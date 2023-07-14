@@ -126,7 +126,7 @@ define('USER_ROLES', [
     'Administrador' => 'ROLE_ADMIN',
     'Editor'        => 'ROLE_EDITOR',
     'Lector'        => 'ROLE_LECTOR',
-
+    'Redactor'      => 'ROLE_WRITER',
 ]);
 
 // Rol para el administrador (debe ser uno de los que están en la lista anterior).
