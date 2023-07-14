@@ -125,7 +125,7 @@ define('USER_ROLES', [
     'Usuario'       => 'ROLE_USER',
     'Administrador' => 'ROLE_ADMIN',
     'Editor'        => 'ROLE_EDITOR',
-    'Lector'        => 'ROLE_LECTOR',
+    'Lector'        => 'ROLE_READER',
     'Redactor'      => 'ROLE_WRITER',
 ]);
 
