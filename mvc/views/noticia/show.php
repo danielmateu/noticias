@@ -57,17 +57,28 @@
                         <p>Aun no hay comentarios en esta noticia 😋</p>
                     </div>
                 <?php else : ?>
+
                     <h4>Comentarios de usuarios</h4>
                     <div class="d-flex flex-column gap-2 p-2">
                         <?php foreach ($comentarios as $comentario) : ?>
                             <a class="list-group-item list-group-item-primary p-2 rounded" href=" /comentario/show/<?= $comentario->id ?>"><?= $comentario->texto ?></a></li>
                         <?php endforeach; ?>
-                        <!-- Si el comentario pertenece al usuario o tiene Role de Admin se le permite eliminar -->
-                        <?php if (Login::isAdmin() || Login::get()->id == $comentario->iduser) : ?>
-                            <!-- Input hidden para mandar por post el id del comentario -->
-                            <input type="hidden" name="id" value="<?= $comentario->id ?>">
+                        <!-- Si el comentario pertenece al usuario o tiene Role de Admin se le permite eliminar revisar esto, si no estamos logueados y hay un comentario salta un warning -->
+                        <!-- <?php if (Login::isAdmin() || $user->id == $comentario->iduser) : ?>
+                            <! Input hidden para mandar por post el id del comentario -->
+                        <input type="hidden" name="id" value="<?= $comentario->id ?>">
+                        <a class="btn btn-outline-danger" href="/comentario/delete/<?= $comentario->id ?>">Eliminar comentario</a>
+                    <?php endif; ?>
+
+                    <!-- Si el usuario está logueado -->
+                    <?php if (Login::get()) : ?>
+                        <!-- Si el usuario tiene role ROLE_ADMIN -->
+                        <?php if (Login::oneRole(['ROLE_ADMIN'])) : ?>
+                            <!-- Enlace para eliminar comentario -->
                             <a class="btn btn-outline-danger" href="/comentario/delete/<?= $comentario->id ?>">Eliminar comentario</a>
                         <?php endif; ?>
+
+                    <?php endif; ?>
                     </div>
                 <?php endif; ?>
 

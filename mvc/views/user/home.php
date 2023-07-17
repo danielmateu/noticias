@@ -53,7 +53,7 @@
         </div>
 
         <!-- Si es un usuario logueado y ha realizado comentarios, los mostramos -->
-        <!-- <?php if (Login::role('ROLE_USER') && !empty($comentarios)) : ?>
+        <?php if (Login::role('ROLE_USER') && !empty($comentarios)) : ?>
             <div class="card col-sm-6 p-4">
                 <h3>Comentarios de <?= $user->displayname ?></h3>
 
@@ -62,12 +62,45 @@
                 <?php else : ?>
                     <ul>
                         <?php foreach ($comentarios as $comentario) : ?>
-                            <li><a href="/comentario/show/<?= $comentario->id ?>"><?= $comentario->texto ?></a></li>
+                            <?php if ($comentario->iduser == $user->id) : ?>
+                                <li><a href="/comentario/show/<?= $comentario->id ?>"><?= $comentario->texto ?></a></li>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
             </div>
-        <?php endif; ?> -->
+        <?php endif; ?>
+
+        <!-- Si es un usuario redactor y ha escrito noticias, las mostramos -->
+
+        <?php if (Login::role('ROLE_WRITER') && !empty($noticias)) : ?>
+            <div class="card col-sm-6 p-4">
+                <h3>Noticias de <?= $user->displayname ?></h3>
+
+                <?php if (empty($noticias)) { ?>
+                    <p>No hay noticias de <?= $user->displayname ?></p>
+            <?php }
+            endif; ?>
+
+            <!-- Si el redactor tiene noticias escritas, las mostramos -->
+
+            <?php if (!empty($noticias)) : ?>
+                <ul>
+                    <?php foreach ($noticias as $noticia) : ?>
+                        <!-- Si el iduser es el id del escritor -->
+                        <?php if ($noticia->iduser == $user->id) : ?>
+                            <li><a href="/noticia/show/<?= $noticia->id ?>"><?= $noticia->titulo ?></a></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+
+            <?php endif; ?>
+
+
+
+            <!-- Si el iduser de la noticia es el mísmo que el id del usuario, mostramos las noticias -->
+
+            </div>
 
 
 
